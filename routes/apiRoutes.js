@@ -1,15 +1,14 @@
 const db = require("../models");
 
-
 module.exports = function (app) {
   // Get all examples
   app.get("/api/examples", function (req, res) {
 
-    db.Box.find({}, function (err, boxes) {
+    db.BoxCollection.find({}, function (err, boxes) {
       var boxMap = {};
 
-      boxes.forEach(function (user) {
-        boxMap[user._id] = user;
+      boxes.forEach(function (box) {
+        boxMap[box._id] = box;
       });
 
       res.send(boxMap);
@@ -21,8 +20,8 @@ module.exports = function (app) {
   app.post("/api/examples", function (req, res) {
 
     db.BoxCollection.create(req.body)
-      .then(function (dbUser) {
-        res.json(dbUser);
+      .then(function (dbBox) {
+        res.json(dbBox);
       })
       .catch(function (err) {
         // If an error occurs, send the error to the client

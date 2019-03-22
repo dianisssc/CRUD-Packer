@@ -29,7 +29,7 @@ BoxCollectionSchema.pre("save", function (next) {
             if (err) {
                 return next(err);
             }
-            bcrypt.hash(user.password, salt, function (err, hash) {
+            bcrypt.hash(box.password, salt, function (err, hash) {
                 if (err) {
                     console.log(err);
                     return next(err);
