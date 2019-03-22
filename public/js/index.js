@@ -33,6 +33,13 @@ var API = {
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function () {
 
+  API.getExamples().then(function (data) {
+
+    console.log(data)
+
+    $exampleList.empty();
+    $exampleList.append($examples);
+  });
 
 };
 
@@ -40,8 +47,9 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
-  var example = {
-    name: $exampleText.val().trim(),
+  var newColl = {
+    name: $('#example-text').val().trim(),
+    password: $('#example-description').val().trim(),
   };
 
   /*if (!(example.text)) {
@@ -49,7 +57,7 @@ var handleFormSubmit = function (event) {
     return;
   }*/
 
-  API.saveExample(example).then(function () {
+  API.saveExample(newColl).then(function () {
     refreshExamples();
   });
 
