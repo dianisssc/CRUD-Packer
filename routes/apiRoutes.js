@@ -2,19 +2,17 @@ const db = require("../models");
 
 module.exports = function (app) {
   // Get all examples
-  app.get("/api/examples", function (req, res) {
+  /*app.get("/", function (req, res) {
 
     db.BoxCollection.find({}, function (err, boxes) {
-      var boxMap = {};
 
-      boxes.forEach(function (box) {
-        boxMap[box._id] = box;
+      res.render("index", {
+        msg: "Welcome!",
+        boxColl: boxes
       });
-
-      res.send(boxMap);
     });
 
-  });
+  });*/
 
   // Create a new collection
   app.post("/api/examples", function (req, res) {
@@ -30,9 +28,25 @@ module.exports = function (app) {
 
   });
 
+  //Update Collection 
+  app.post("/api/example/", function (req, res) {
+
+    db.BoxCollection.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name }})
+    .then(function(dbBox) {
+     
+      res.json(dbBox);
+    });
+   
+  });
+
+
+
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
-
+    db.BoxCollection.deleteOne({ _id: req.body.id }, { $set: { name: req.body.name }}, function (err) {
+      if (err) return handleError(err);
+    
+    });
   });
 
 };

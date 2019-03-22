@@ -11,14 +11,14 @@ var BoxCollectionSchema = new Schema({
         required: true,
         unique: true,
     },
+    password: {
+        type: String,
+        required: true
+    },
     box: {
         type: Schema.Types.ObjectId,
         ref: "Boxes"
     },
-    password: {
-        type: String,
-        required: true
-    }
 
 });
 
