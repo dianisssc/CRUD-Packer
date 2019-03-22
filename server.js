@@ -28,7 +28,7 @@ require("./routes/htmlRoutes")(app);
 
 mongoose.connect(process.env.MONGODB_URI,
   { useNewUrlParser: true, useCreateIndex: true }
-).then(() => console.log('MongoDB Connected'))
+).then(() => console.log('MongodB Connected'))
   .catch(err => console.log(err));
 
 // Starting the server, syncing our models ------------------------------------/
