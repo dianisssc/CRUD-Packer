@@ -18,7 +18,7 @@ var API = {
   },
   getExamples: function () {
     return $.ajax({
-      url: "api/examples",
+      url: "/",
       type: "GET"
     });
   },
@@ -37,8 +37,7 @@ var refreshExamples = function () {
 
     console.log(data)
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    //$exampleList.empty();
   });
 
 };
@@ -48,8 +47,8 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var newColl = {
-    name: $('#example-text').val().trim(),
-    password: $('#example-description').val().trim(),
+    name: $('#example-name').val().trim(),
+    password: $('#example-password').val().trim(),
   };
 
   /*if (!(example.text)) {
@@ -61,8 +60,8 @@ var handleFormSubmit = function (event) {
     refreshExamples();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $('#example-name').val("");
+  $('#example-name').val("");
 };
 
 var handleDeleteBtnClick = function () {

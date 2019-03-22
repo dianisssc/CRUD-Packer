@@ -2,19 +2,17 @@ const db = require("../models");
 
 module.exports = function (app) {
   // Get all examples
-  app.get("/api/examples", function (req, res) {
+  /*app.get("/", function (req, res) {
 
     db.BoxCollection.find({}, function (err, boxes) {
-      var boxMap = {};
 
-      boxes.forEach(function (box) {
-        boxMap[box._id] = box;
+      res.render("index", {
+        msg: "Welcome!",
+        boxColl: boxes
       });
-
-      res.send(boxMap);
     });
 
-  });
+  });*/
 
   // Create a new example
   app.post("/api/examples", function (req, res) {
