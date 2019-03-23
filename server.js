@@ -26,7 +26,8 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-mongoose.connect(process.env.MONGODB_URI,
+var mongodbURI= process.env.MONGODB_URI || "mongodb://localhost:27017/project2"
+mongoose.connect(mongodbURI,
   { useNewUrlParser: true, useCreateIndex: true }
 ).then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
