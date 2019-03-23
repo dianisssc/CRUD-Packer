@@ -25,9 +25,8 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 //Connect to mongo db 
-mongoose.connect(process.env.MONGODB_URI,
-  { useNewUrlParser: true, useCreateIndex: true }
-).then(() => console.log('MongodB Connected'))
+mongoose.connect("mongodb://localhost/box_db", { useNewUrlParser: true }).
+then(() => console.log('MongodB Connected'))
   .catch(err => console.log(err));
 
 // Starting the server, syncing our models ------------------------------------/

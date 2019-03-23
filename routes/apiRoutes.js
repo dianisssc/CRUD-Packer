@@ -29,12 +29,13 @@ module.exports = function (app) {
   });
 
   //Update Collection 
-  app.post("/api/example/", function (req, res) {
+  app.post("/api/examples", function (req, res) {
 
     db.BoxCollection.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name }})
-    .then(function(dbBox) {
+    .then(function(BoxColl) {
      
-      res.json(dbBox);
+      res.json(BoxColl);
+  
     });
    
   });

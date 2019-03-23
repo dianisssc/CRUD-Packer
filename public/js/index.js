@@ -3,7 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-
+var $updateBtn = $("#submit-update");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -19,9 +19,9 @@ var API = {
   },
   updateExample: function (example) {
     return $.ajax({
-      url: "api/example/",
+      url: "api/examples",
       type: "POST",
-      data: JSON.stringify(example)
+      
     })
   },
   getExamples: function () {
@@ -32,7 +32,7 @@ var API = {
   },
   deleteExample: function (id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/examples" + id,
       type: "DELETE"
     });
   }
@@ -43,7 +43,7 @@ var refreshExamples = function () {
 
   API.getExamples().then(function (data) {
 
-    console.log(data)
+    //console.log(data)
 
     //$exampleList.empty();
   });
@@ -95,5 +95,5 @@ var handleUpdate = function (event) {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$("#submit-update").on("click", handleUpdate);
+$updateBtn.on("click", handleUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
