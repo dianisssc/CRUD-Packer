@@ -1,4 +1,4 @@
 module.exports = {
-    Box: require("./Box"),
-  };
-  
+  Box: require("./Box"),
+  BoxCollection: require("./BoxCollection")
+};

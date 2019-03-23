@@ -6,7 +6,6 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
-const db = mongoose.connection;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -25,10 +24,9 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-
-mongoose.connect(process.env.MONGODB_URI,
-  { useNewUrlParser: true, useCreateIndex: true }
-).then(() => console.log('MongoDB Connected'))
+//Connect to mongo db 
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }).
+then(() => console.log('MongodB Connected'))
   .catch(err => console.log(err));
 
 // Starting the server, syncing our models ------------------------------------/

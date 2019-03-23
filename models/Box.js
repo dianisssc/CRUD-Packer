@@ -6,17 +6,12 @@ var BoxSchema = new Schema({
 
     name: {
         type: String,
-        required: true
+        required: true,
     },
-
-    box: {
-        type: Schema.Types.ObjectId,
-        ref: "Box"
-    }
 
 });
 
-var Box = mongoose.model("Box", BoxSchema);
+var Box = mongoose.model("Boxes", BoxSchema);
 
 // Export the Note model
 module.exports = Box;
