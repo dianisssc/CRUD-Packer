@@ -15,7 +15,7 @@ module.exports = function (app) {
   });*/
 
   // Create a new collection
-  app.post("/api/examples", function (req, res) {
+  app.post("/api/create", function (req, res) {
 
     db.BoxCollection.create(req.body)
       .then(function (dbBox) {
@@ -29,24 +29,24 @@ module.exports = function (app) {
   });
 
   //Update Collection 
-  app.post("/api/examples", function (req, res) {
+  app.post("/api/update/:id", function (req, res) {
 
-    db.BoxCollection.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name }})
-    .then(function(BoxColl) {
-     
-      res.json(BoxColl);
-  
-    });
-   
+
+    db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name } })
+      .then((box) => {
+        console.log('Triggered')
+        res.json(box);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   });
-
 
 
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
-    db.BoxCollection.deleteOne({ _id: req.body.id }, { $set: { name: req.body.name }}, function (err) {
-      if (err) return handleError(err);
-    
+    db.BoxCollection.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
+      res.json(dbExample);
     });
   });
 

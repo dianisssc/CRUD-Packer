@@ -13,15 +13,21 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
+      url: "api/create",
       data: JSON.stringify(example)
     });
   },
   updateExample: function (example) {
+
+    console.log(example);
+
     return $.ajax({
-      url: "api/examples",
+      headers: {
+        "Content-Type": "application/json"
+      },
       type: "POST",
-      
+      url: `api/update/${example.id}`,
+      data: JSON.stringify(example)
     })
   },
   getExamples: function () {
@@ -43,9 +49,8 @@ var refreshExamples = function () {
 
   API.getExamples().then(function (data) {
 
-    //console.log(data)
 
-    //$exampleList.empty();
+
   });
 
 };
@@ -59,17 +64,12 @@ var handleFormSubmit = function (event) {
     password: $('#example-password').val().trim(),
   };
 
-  /*if (!(example.text)) {
-    alert("You must enter an example text and description!");
-    return;
-  }*/
-
   API.saveExample(newColl).then(function () {
     refreshExamples();
   });
 
   $('#example-name').val("");
-  $('#example-name').val("");
+  $('#example-password').val("");
 };
 
 var handleDeleteBtnClick = function () {
@@ -81,16 +81,19 @@ var handleDeleteBtnClick = function () {
     refreshExamples();
   });
 };
+
 var handleUpdate = function (event) {
   event.preventDefault();
   var updateColl = {
     name: $('#update-name').val().trim(),
-    id: $('#update-id').val().trim()
+    id: $('#update-id').val().trim(),
   };
-  console.log(updateColl)
+
+  console.log(updateColl.name)
+
   API.updateExample(updateColl).then(function () {
     refreshExamples();
-});
+  });
 };
 
 // Add event listeners to the submit and delete buttons
