@@ -4,7 +4,7 @@ module.exports = function (app) {
  
 
   // Create a new collection
-  app.post("/api/create", function (req, res) {
+  app.post("/api/create/", function (req, res) {
 
     db.BoxCollection.create(req.body)
       .then(function (dbBox) {

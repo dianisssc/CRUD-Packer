@@ -9,7 +9,7 @@ var $updateBtn = $("#submit-update");
 
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
-})
+});
 
 // The API object contains methods for each kind of request we'll make
 var API = {
