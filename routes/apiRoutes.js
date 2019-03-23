@@ -1,18 +1,7 @@
 const db = require("../models");
 
 module.exports = function (app) {
-  // Get all examples
-  /*app.get("/", function (req, res) {
-
-    db.BoxCollection.find({}, function (err, boxes) {
-
-      res.render("index", {
-        msg: "Welcome!",
-        boxColl: boxes
-      });
-    });
-
-  });*/
+ 
 
   // Create a new collection
   app.post("/api/examples", function (req, res) {
