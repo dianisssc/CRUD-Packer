@@ -16,6 +16,19 @@ module.exports = function (app) {
 
   });
 
+  app.post("/api/createBox", function (req, res) {
+
+    db.Box.create(req.body)
+      .then(function (dbBox) {
+        res.json(dbBox);
+      })
+      .catch(function (err) {
+        // If an error occurs, send the error to the client
+        res.json(err);
+      });
+
+  });
+
   //Update Collection 
   app.post("/api/update/:id", function (req, res) {
 

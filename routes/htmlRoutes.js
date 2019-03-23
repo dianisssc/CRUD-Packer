@@ -13,6 +13,18 @@ module.exports = function (app) {
 
   });
 
+  app.get("/collection/:id", function (req, res) {
+
+    db.BoxCollection.findOne({ _id: req.params.id })
+      .populate("Boxes")
+      .then(function (err, boxColl) {
+        res.render("collection", {
+          boxColl,
+        });
+      });
+
+  });
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function (req, res) {
 

@@ -7,47 +7,55 @@ var $updateBtn = $("#submit-update");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
+  saveBoxColl: function (BoxColl) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/create",
-      data: JSON.stringify(example)
+      data: JSON.stringify(BoxColl)
     });
   },
-  updateExample: function (example) {
-
-    console.log(example);
-
+  saveNewBox: function (Box) {
+    console.log(Box)
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: `api/update/${example.id}`,
-      data: JSON.stringify(example)
+      url: "/api/createBox",
+      data: JSON.stringify(Box)
+    });
+  },
+  updateBoxColl: function (BoxColl) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: `api/update/${BoxColl.id}`,
+      data: JSON.stringify(BoxColl)
     })
   },
-  getExamples: function () {
+  getBoxColl: function () {
     return $.ajax({
       url: "/",
       type: "GET"
     });
   },
-  deleteExample: function (id) {
+  deleteBoxColl: function (id) {
     return $.ajax({
       url: "api/examples/" + id,
       type: "DELETE"
     });
-  }
+  },
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function () {
 
-  API.getExamples().then(function (data) {
+  API.getBoxColl().then(function (data) {
 
 
 
@@ -64,7 +72,7 @@ var handleFormSubmit = function (event) {
     password: $('#example-password').val().trim(),
   };
 
-  API.saveExample(newColl).then(function () {
+  API.saveBoxColl(newColl).then(function () {
     refreshExamples();
   });
 
@@ -72,12 +80,28 @@ var handleFormSubmit = function (event) {
   $('#example-password').val("");
 };
 
+var handleBoxSubmit = function (event) {
+  event.preventDefault();
+
+  var newBox = {
+    name: $('#box-name').val().trim(),
+    collectionBoxBelongsTo: $('#submit-box').attr('data-id'),
+  };
+
+  API.saveNewBox(newBox).then(function () {
+    refreshExamples();
+  });
+
+  $('#box-name').val("");
+};
+
+
 var handleDeleteBtnClick = function () {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function () {
+  API.deleteBoxColl(idToDelete).then(function () {
     refreshExamples();
   });
 };
@@ -91,7 +115,7 @@ var handleUpdate = function (event) {
 
   console.log(updateColl.name)
 
-  API.updateExample(updateColl).then(function () {
+  API.updateBoxColl(updateColl).then(function () {
     refreshExamples();
   });
 };
@@ -99,4 +123,5 @@ var handleUpdate = function (event) {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
+$('#submit-box').on('click', handleBoxSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);

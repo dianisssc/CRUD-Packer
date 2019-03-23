@@ -1,0 +1,63 @@
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+
+                <h2>This is your Collection Page!</h2>
+                <h2>{{boxColl.name}}</h2>
+
+                <form class="clearfix mb-4" action="POST">
+                    <div class="form-group"> Create Box
+                        <label for="box-name">Name of Box</label>
+                        <input type="text" id="box-name" class="form-control" aria-describedby="box-name"
+                            placeholder="Enter Name Name">
+                    </div>
+                    <button data-id="{{boxColl.id}}" id="submit-box" class="btn btn-primary float-right">Submit</button>
+                </form>
+
+                <h3>Boxes belonging to this collection:</h3>
+                <ul id="example-list" class="list-group">
+                    {{#each boxColl.box}}
+                    <li data-id="{{this._id}}" class="list-group-item">
+                        <a href="example/{{this._id}}">{{this.name}}</a>
+                        <div>{{this.contents}}</div>
+                        <button class="btn btn-danger float-right delete">ｘ</button>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
