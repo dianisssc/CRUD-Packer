@@ -1,9 +1,13 @@
 const db = require("../models");
 
 module.exports = function (app) {
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 8b8fa0e16d6d181bdbf55d4ed5c7a13914e52120
 
   // Create a new collection
-  app.post("/api/create", function (req, res) {
+  app.post("/api/create/", function (req, res) {
 
     db.BoxCollection.create(req.body)
       .then(function (dbBox) {
