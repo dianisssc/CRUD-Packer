@@ -53,14 +53,22 @@ var API = {
       type: "DELETE"
     });
   },
+  checkPass: function (password) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: 'POST',
+      url: "api/checkPass",
+      data: JSON.stringify(password)
+    })
+  }
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function () {
 
   API.getBoxColl().then(function (data) {
-
-
 
   });
 
@@ -127,25 +135,31 @@ var handleUpdate = function (event) {
 
 var manageFormSubmit = (event) => {
   event.preventDefault();
- 
-  //Post the results from the form to the db
-  //Route User back to the homepage(or wherever) using window.location
-  let userInput = $('#update-name').val().trim();
-  
-  if(userInput === ""){
-    alert("Please enter the name of the collection you would like to manage.")
-    //window.location.href=("/");
+
+  let collName = $('#collection-name').val().trim();
+  let collPass = $('#collection-password')
+
+  let obj = {
+    collName,
+    collPass
   }
-  else{
-    window.location.href=("/manage");
+
+  if (collName === "") {
+    alert("Please enter the name of the collection you would like to manage.")
+  }
+  else {
+    API.checkPass(obj).then(function () {
+
+    })
+      .catch(err => console.log(err));
   }
 }
 
 var createFormSubmit = (event) => {
   event.preventDefault();
 
-  window.location.href=("/manage");
-  
+  window.location.href = ("/collection");
+
 }
 
 

@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
 
@@ -18,7 +19,7 @@ module.exports = function (app) {
   app.post("/createBox/:id", function (req, res) {
 
     db.Box.create(req.body)
-      .then(function (dbBox){
+      .then(function (dbBox) {
         console.log('dbBox', dbBox);
         return db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $push: { box: dbBox._id } }, { new: true });
       })
@@ -42,6 +43,16 @@ module.exports = function (app) {
       .catch((err) => {
         console.log(err)
       })
+  });
+  
+  // decrypt and check password
+
+  app.post("api/checkPass", function (req, res) {
+
+    console.log(req.body);
+
+    res.json(req.body);
+
   });
 
 
