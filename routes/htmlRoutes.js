@@ -31,7 +31,7 @@ module.exports = function (app) {
     db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
       console.log('test', boxes)
       res.render("manage", {
-        example: boxes
+        manage: boxes
       });
     });
    

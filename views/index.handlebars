@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <div class="card" style="width: 18rem;">
 
           <div class="card-body">
-            <h5 class="card-title">Create Collection</h5>
+            <h5 class="card-title">Create Box Collection</h5>
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
               Create
@@ -25,7 +25,19 @@
           </div>
         </div>
       </div>
-      <div class="col-5">
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+
+          <div class="card-body">
+            <h5 class="card-title">Quick Search</h5>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
         <div class="card" style="width: 18rem;">
 
           <div class="card-body">
@@ -41,7 +53,7 @@
     <!--
          
 
-        -->
+   <!--     
     <div class="row">
       <div class="col-8 offset-2">
         <h3>Examples:</h3>
@@ -56,7 +68,7 @@
       </div>
     </div>
   </div>
-
+-->
 
   <!-- Create Modal -->
   <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,16 +88,16 @@
               <input type="text" id="example-name" class="form-control" aria-describedby="example-name" placeholder="Enter Example Name">
             </div>
             <div class="form-group">
-              <label for="example-password">Password</label>
+              <label for="example-password">Set Password</label>
               <textarea class="form-control" id="example-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
             </div>
-
+            
           </form>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" id="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-lg btn-danger" id = "create-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
         </div>
       </div>
     </div>
@@ -118,6 +130,37 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       <button class="btn btn-lg btn-danger" id = "mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Manage Collection</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="update-name">Search By ID</label>
+              <input type="text" id="update-name" class="form-control" aria-describedby="update-name" placeholder="Enter Example Name">
+            </div>
+            <div class="form-group">
+              
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+         <button class="btn btn-lg btn-danger" id = "boxID-form-submit"><span class="fa fa-credit-card"></span>Search By ID</button>     
+      <button class="btn btn-lg btn-danger" id = "barcode-form-submit"><span class="fa fa-credit-card"></span>Search By Barcode</button>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var $updateBtn = $("#submit-update");
 var $mngFormSubmitBtn = $("#mng-form-submit");
-
+var $createFormSubmitBtn = $("#create-form-submit");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -101,14 +101,25 @@ var handleUpdate = function (event) {
 
 var manageFormSubmit = (event) => {
   event.preventDefault();
-  let userInput = $('#update-name').val().trim();
+ 
   //Post the results from the form to the db
   //Route User back to the homepage(or wherever) using window.location
-  window.location.href=("/manage");
+  let userInput = $('#update-name').val().trim();
+  
   if(userInput === ""){
     alert("Please enter the name of the collection you would like to manage.")
-    window.location.href=("/");
+    //window.location.href=("/");
   }
+  else{
+    window.location.href=("/manage");
+  }
+}
+
+var createFormSubmit = (event) => {
+  event.preventDefault();
+
+  window.location.href=("/manage");
+  
 }
 
 
@@ -117,6 +128,7 @@ $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
+$createFormSubmitBtn.on("click", createFormSubmit);
 
 //need submit buttons to update db in manage collection page 
 //need to be able to display box collection by name entered in modal 
