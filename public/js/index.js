@@ -1,15 +1,12 @@
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var $updateBtn = $("#submit-update");
+var $mngFormSubmitBtn = $("#mng-form-submit");
 
-
-
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-});
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -102,7 +99,25 @@ var handleUpdate = function (event) {
   });
 };
 
+var manageFormSubmit = (event) => {
+  event.preventDefault();
+  let userInput = $('#update-name').val().trim();
+  //Post the results from the form to the db
+  //Route User back to the homepage(or wherever) using window.location
+  window.location.href=("/manage");
+  if(userInput === ""){
+    alert("Please enter the name of the collection you would like to manage.")
+    window.location.href=("/");
+  }
+}
+
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$mngFormSubmitBtn.on("click", manageFormSubmit)
+
+//need submit buttons to update db in manage collection page 
+//need to be able to display box collection by name entered in modal 
+//currently, the submit button checks if there is text in the name field, we need to have it check that the name is indeed a collection and check the password

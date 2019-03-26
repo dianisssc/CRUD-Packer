@@ -31,7 +31,7 @@
           <div class="card-body">
             <h5 class="card-title">Manage Collection</h5>
 
-             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageModal">
               Manage
             </button>
           </div>
@@ -69,27 +69,29 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-name">Name</label>
-            <input type="text" id="example-name" class="form-control" aria-describedby="example-name" placeholder="Enter Example Name">
-          </div>
-          <div class="form-group">
-            <label for="example-password">Password</label>
-            <textarea class="form-control" id="example-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
-          </div>
 
-        </form>
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="example-name">Name</label>
+              <input type="text" id="example-name" class="form-control" aria-describedby="example-name" placeholder="Enter Example Name">
+            </div>
+            <div class="form-group">
+              <label for="example-password">Password</label>
+              <textarea class="form-control" id="example-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
+            </div>
+
+          </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" id ="submit" class="btn btn-primary">Submit</button>
+          <button type="button" id="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>
   </div>
 
-   <!-- Manage Modal -->
+  <!-- Manage Modal -->
   <div class="modal fade" id="manageModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -100,24 +102,22 @@
           </button>
         </div>
         <div class="modal-body">
-       
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="update-name">Update Name</label>
-            <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
-              placeholder="Enter Example Name">
-          </div>
-          <div class="form-group">
-            <label for="update-id">id</label>
-            <textarea class="form-control" id="update-id" aria-describedby="update-id"
-              placeholder="Enter Update ID"></textarea>
-          </div>
-         
-        </form>
+
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="update-name">Collection Name</label>
+              <input type="text" id="update-name" class="form-control" aria-describedby="update-name" placeholder="Enter Example Name">
+            </div>
+            <div class="form-group">
+              <label for="example-password">Password</label>
+              <textarea class="form-control" id="example-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
+            </div>
+
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" id="submit-update" class="btn btn-primary">Submit</button>
+      <button class="btn btn-lg btn-danger" id = "mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
         </div>
       </div>
     </div>
