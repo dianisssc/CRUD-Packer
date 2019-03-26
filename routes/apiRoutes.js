@@ -10,20 +10,22 @@ module.exports = function (app) {
         res.json(dbBox);
       })
       .catch(function (err) {
-        // If an error occurs, send the error to the client
         res.json(err);
       });
 
   });
 
-  app.post("/api/createBox", function (req, res) {
+  app.post("/createBox/:id", function (req, res) {
 
     db.Box.create(req.body)
+      .then(function (dbBox){
+        console.log('dbBox', dbBox);
+        return db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $push: { box: dbBox._id } }, { new: true });
+      })
       .then(function (dbBox) {
         res.json(dbBox);
       })
       .catch(function (err) {
-        // If an error occurs, send the error to the client
         res.json(err);
       });
 

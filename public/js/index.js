@@ -24,7 +24,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "/api/createBox",
+      url: `/createBox/${Box.boxBelongsTo}`,
       data: JSON.stringify(Box)
     });
   },
@@ -83,9 +83,11 @@ var handleFormSubmit = function (event) {
 var handleBoxSubmit = function (event) {
   event.preventDefault();
 
+  console.log(window.location.pathname.split('/')[2]);
+
   var newBox = {
     name: $('#box-name').val().trim(),
-    collectionBoxBelongsTo: $('#submit-box').attr('data-id'),
+    boxBelongsTo: window.location.pathname.split('/')[2],
   };
 
   API.saveNewBox(newBox).then(function () {

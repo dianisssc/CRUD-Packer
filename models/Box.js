@@ -8,7 +8,7 @@ var BoxSchema = new Schema({
         type: String,
         required: true,
     },
-    collectionBoxBelongsTo: {
+    boxBelongsTo: {
         type: String,
     },
     id: {
