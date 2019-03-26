@@ -1,4 +1,5 @@
 const db = require("../models");
+const path = require("path");
 
 module.exports = function (app) {
   // Load index page
@@ -23,6 +24,17 @@ module.exports = function (app) {
       });
     });
 
+  });
+
+
+  app.get("/manage", function(req, res) {
+    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
+      console.log('test', boxes)
+      res.render("manage", {
+        manage: boxes
+      });
+    });
+   
   });
 
   // Render 404 page for any unmatched routes
