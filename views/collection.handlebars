@@ -21,7 +21,12 @@
                     <li data-id="{{this._id}}" class="list-group-item">
                         <a href="{{this._id}}">{{this.name}}</a>
                         <div>{{this._id}}</div>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
+                        <button class="btn btn-danger float-right" id='box-delete'>ｘ</button>
+                        {{#each results.box.contents}}
+                            <li>
+                                {{this}}
+                            </li>
+                        {{/each}}
                     </li>
                     {{/each}}
                 </ul>

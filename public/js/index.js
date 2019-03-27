@@ -40,6 +40,16 @@ var API = {
       data: JSON.stringify(BoxColl)
     })
   },
+  updateBox: function (Update) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: `/api/updateBox/${Update.id}`,
+      data: JSON.stringify(BoxColl)
+    })
+  },
   getBoxColl: function () {
     return $.ajax({
       url: "/",
@@ -48,7 +58,13 @@ var API = {
   },
   deleteBoxColl: function (id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "/api/examples/" + id,
+      type: "DELETE"
+    });
+  },
+  deleteBox: function (id) {
+    return $.ajax({
+      url: `/api/deleteBox/${id}`,
       type: "DELETE"
     });
   },
@@ -109,11 +125,14 @@ var handleBoxSubmit = function (event) {
 
 
 var handleDeleteBtnClick = function () {
+
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteBoxColl(idToDelete).then(function () {
+  console.log(idToDelete)
+
+  API.deleteBox(idToDelete).then(function () {
     refreshExamples();
   });
 };
@@ -132,6 +151,26 @@ var handleUpdate = function (event) {
   });
 };
 
+
+var updateBox = (event) => {
+  event.preventDefault();
+
+  // Get user input (.val stuff)
+
+  // put in object
+
+  let obj = {
+
+    name,
+    contents
+
+  }
+
+  API.updateBox(obj).then(function () {
+    refreshExamples();
+  });
+
+}
 var manageFormSubmit = (event) => {
   event.preventDefault();
 
@@ -161,7 +200,7 @@ var manageFormSubmit = (event) => {
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
 $('#submit-box').on('click', handleBoxSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 
 //need submit buttons to update db in manage collection page 

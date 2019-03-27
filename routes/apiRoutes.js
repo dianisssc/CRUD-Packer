@@ -46,6 +46,19 @@ module.exports = function (app) {
       })
   });
 
+  //Update Box 
+  app.post("/api/updateBox/:id", function (req, res) {
+
+    db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.params.name, contents: req.body.contents } })
+      .then((box) => {
+        res.json(box);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+
+  });
+
   // decrypt and check password
 
   app.post("/api/checkPass/", function (req, res) {
@@ -71,6 +84,7 @@ module.exports = function (app) {
 
               } else {
                 res.status(300);
+
                 res.send('Password not correct!');
               }
             })
@@ -81,11 +95,25 @@ module.exports = function (app) {
   });
 
 
+
+
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
     db.BoxCollection.findByIdAndRemove(req.params.id).then(function (dbExample) {
       res.json(dbExample);
     });
+
   });
+
+  // Delete box by id
+  app.delete("/api/deleteBox/:id", function (req, res) {
+
+    console.log('troggered')
+
+    db.Box.findByIdAndRemove(req.params.id).then(function (dbExample) {
+      res.json(dbExample);
+    });
+  });
+
 
 };
