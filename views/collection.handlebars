@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="jumbotron jumbotron-fluid text-white" id="headerTron">
+                <div class="jumbotron jumbotron-fluid text-white coolFont rounded" id="headerTron">
   <div class="container">
     <h2>This is your Collection Page!</h2>
                 <h2>{{results.name}}</h2>
@@ -13,7 +13,7 @@
                         <input type="text" id="box-name" class="form-control" aria-describedby="box-name"
                             placeholder="Enter Name Name">
                     </div>
-                    <button id="submit-box" class="btn btn-primary float-right">Submit</button>
+                    <button id="submit-box" class="btn btn-warning float-right">Submit</button>
                 </form>
 
                 <h3>Boxes belonging to this collection:</h3>
@@ -22,6 +22,7 @@
                     <li data-id="{{this._id}}" class="list-group-item">
                         <a href="{{this._id}}">{{this.name}}</a>
                         <div>{{this._id}}</div>
+                        <button class="btn btn-warning float-right edit">Edit</button>
                         <button class="btn btn-danger float-right delete">ｘ</button>
                     </li>
                     {{/each}}
@@ -60,7 +61,7 @@
     </div>
 
     <!-- New Box Modal -->
-<div class="modal fade" id="newBoxModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<div class="modal fade coolFont" id="newBoxModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
