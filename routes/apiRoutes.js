@@ -16,6 +16,8 @@ module.exports = function (app) {
 
   });
 
+  // create new box
+
   app.post("/createBox/:id", function (req, res) {
 
     db.Box.create(req.body)
@@ -37,21 +39,45 @@ module.exports = function (app) {
 
     db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name } })
       .then((box) => {
-        console.log('Triggered')
         res.json(box);
       })
       .catch((err) => {
         console.log(err)
       })
   });
-  
+
   // decrypt and check password
 
-  app.post("api/checkPass", function (req, res) {
+  app.post("/api/checkPass/", function (req, res) {
 
-    console.log(req.body);
+    let password = false;
 
-    res.json(req.body);
+    db.BoxCollection.findOne({ 'name': req.body.collName })
+      .populate('box', ['name', '_id', 'boxBelongsTo', 'contents']).then((results) => {
+
+        if (results === null) {
+          console.log('Nothing returned!');
+        } else {
+
+          bcrypt.compare(req.body.collPass, results.password).then(function (res) {
+            if (res === true) {
+              password = true;
+            }
+          })
+            .then(() => {
+              if (password) {
+
+                res.render("collection", {
+                  results
+                });
+
+              } else {
+                console.log('password not correct!');
+              }
+            })
+
+        }
+      });
 
   });
 

@@ -21,30 +21,7 @@ module.exports = function (app) {
         res.render("collection", {
           results
         });
-      })
-  });
-
-  // Load example page and pass in an example by id
-  /*app.get("/example/:id", function (req, res) {
-
-    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
-      console.log('test', boxes)
-      res.render("example", {
-        example: boxes
       });
-    });
-
-  });*/
-
-
-  app.get("/manage", function (req, res) {
-    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
-      console.log('test', boxes)
-      res.render("manage", {
-        manage: boxes
-      });
-    });
-
   });
 
   // Render 404 page for any unmatched routes
