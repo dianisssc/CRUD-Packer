@@ -53,7 +53,7 @@
     <!--
          
 
-   <!--     
+   <!   
     <div class="row">
       <div class="col-8 offset-2">
         <h3>Examples:</h3>
@@ -94,14 +94,15 @@
             
           </form>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button class="btn btn-lg btn-danger" id = "create-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-lg btn-danger" id="submit"><span
+                class="fa fa-credit-card"></span>Submit</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Manage Modal -->
   <div class="modal fade coolFont" id="manageModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -133,7 +134,6 @@
         </div>
       </div>
     </div>
-  </div>
 
 <!-- Search Modal -->
     <div class="modal fade coolFont" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -165,14 +165,13 @@
       </div>
     </div>
   </div>
-</div>
 
 
-<script src="/js/index.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
-</script>
+  <script src="/js/index.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  </script>

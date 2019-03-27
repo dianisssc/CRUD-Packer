@@ -25,7 +25,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 //Connect to mongo db 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }).
 then(() => console.log('MongodB Connected'))
   .catch(err => console.log(err));
 
