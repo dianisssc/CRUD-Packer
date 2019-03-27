@@ -20,14 +20,14 @@
                         <h3>Boxes belonging to this collection:</h3>
                         <ul id="example-list" class="list-group">
                             {{#each results.box}}
-                            <li class="bg-dark" data-id="{{this._id}}" class="list-group-item">
+                            <li class="bg-dark border border-white" data-id="{{this._id}}" class="list-group-item">
                                 <a href="{{this._id}}">{{this.name}}</a>
                                 <div>{{this._id}}</div>
                                 <div>{{this.contens}}</div>
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal">Edit</button>
-                                <button class="btn btn-danger float-right delete">ｘ</button>
+                                <button type="button" class="btn btn-danger float-right delete" id ="box-delete">ｘ</button>
                             </li>
                             {{/each}}
                         </ul>
@@ -42,27 +42,7 @@
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- New Box Modal -->
     <div class="modal fade coolFont" id="newBoxModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
@@ -83,10 +63,12 @@
                             <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
                                 placeholder="Enter Example Name">
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Box Contents</label>
                             <textarea class="form-control" id="boxContent" rows="3"></textarea>
                         </div>
+                      
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -115,7 +97,11 @@
                             <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
                                 placeholder="Enter Example Name">
                         </div>
-                        
+                           <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Unique ID</label>
+                            <input type="text" id="update-UID" class="form-control" aria-describedby="update-UID"
+                                placeholder="Enter a 4 digit ID for your box">
+                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Box Contents</label>
                             <textarea class="form-control" id="boxContent" rows="3"></textarea>

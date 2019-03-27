@@ -6,7 +6,6 @@ var $exampleList = $("#example-list");
 var $updateBtn = $("#submit-update");
 var $mngFormSubmitBtn = $("#mng-form-submit");
 var $createBoxBtn = $("#submit-box");
-
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveBoxColl: function (BoxColl) {
@@ -40,6 +39,16 @@ var API = {
       data: JSON.stringify(BoxColl)
     })
   },
+  updateBox: function (Update) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: `/api/updateBox/${Update.id}`,
+      data: JSON.stringify(BoxColl)
+    })
+  },
   getBoxColl: function () {
     return $.ajax({
       url: "/",
@@ -48,7 +57,13 @@ var API = {
   },
   deleteBoxColl: function (id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "/api/examples/" + id,
+      type: "DELETE"
+    });
+  },
+  deleteBox: function (id) {
+    return $.ajax({
+      url: `/api/deleteBox/${id}`,
       type: "DELETE"
     });
   },
@@ -109,11 +124,14 @@ var handleBoxSubmit = function (event) {
 
 
 var handleDeleteBtnClick = function () {
+
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteBoxColl(idToDelete).then(function () {
+  console.log(idToDelete)
+
+  API.deleteBox(idToDelete).then(function () {
     refreshExamples();
   });
 };
@@ -133,7 +151,37 @@ var handleUpdate = function (event) {
 };
 
 
+var updateBox = (event) => {
+  event.preventDefault();
+  let contents = $('#boxContent').val().trim(); 
+  
+  $('#boxContent').val('')
 
+  // put in object
+
+  let obj = {
+
+    name,
+    contents,
+    //uniqueID
+
+  }
+  //check if user's unique ID is 4 digits 
+ /* let splitID = uniqueID,
+    
+    sNumber = splitID.toString();
+
+    for (var i = 0, len = sNumber.length; i < len; i += 1) {
+      if(sNumber[i]>4){
+        alert("please enter a 4 digit ID")
+      }
+  }*/
+
+  API.updateBox(obj).then(function () {
+    refreshExamples();
+  });
+
+}
 var manageFormSubmit = (event) => {
   event.preventDefault();
 
@@ -162,10 +210,10 @@ var manageFormSubmit = (event) => {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
-$createBoxBtn.on('click', handleBoxSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
-$mngFormSubmitBtn.on("click", manageFormSubmit);
-
+$('#submit-box').on('click', handleBoxSubmit);
+$('#box-delete').on("click", handleDeleteBtnClick);
+$mngFormSubmitBtn.on("click", manageFormSubmit)
+$('#save-changes').on("click", updateBox);
 
 //need submit buttons to update db in manage collection page 
 //need to be able to display box collection by name entered in modal 

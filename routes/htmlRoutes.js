@@ -17,12 +17,12 @@ module.exports = function (app) {
   app.get("/collection/:id", function (req, res) {
     db.BoxCollection.findOne({ _id: req.params.id })
       .populate('box', ['name', '_id', 'boxBelongsTo', 'contents']).then((results) => {
-        console.log('results', results);
         res.render("collection", {
           results
         });
       });
   });
+
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

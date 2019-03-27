@@ -16,6 +16,9 @@ var BoxSchema = new Schema({
     },
     contents: {
         type: Object,
+    },
+    uniqueID: {
+        type: Number,
     }
 
 });
