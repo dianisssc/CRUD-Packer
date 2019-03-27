@@ -5,7 +5,7 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var $updateBtn = $("#submit-update");
 var $mngFormSubmitBtn = $("#mng-form-submit");
-var $createFormSubmitBtn = $("#create-form-submit");
+var $createBoxBtn = $("#submit-box");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -132,6 +132,8 @@ var handleUpdate = function (event) {
   });
 };
 
+
+
 var manageFormSubmit = (event) => {
   event.preventDefault();
 
@@ -160,9 +162,10 @@ var manageFormSubmit = (event) => {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
-$('#submit-box').on('click', handleBoxSubmit);
+$createBoxBtn.on('click', handleBoxSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
-$mngFormSubmitBtn.on("click", manageFormSubmit)
+$mngFormSubmitBtn.on("click", manageFormSubmit);
+
 
 //need submit buttons to update db in manage collection page 
 //need to be able to display box collection by name entered in modal 

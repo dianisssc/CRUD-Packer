@@ -3,41 +3,44 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="jumbotron jumbotron-fluid text-white coolFont rounded" id="headerTron">
-  <div class="container">
-    <h2>This is your Collection Page!</h2>
-                <h2>{{results.name}}</h2>
+                    <div class="container">
+                        <h2>This is your Collection Page!</h2>
+                        <h2>{{results.name}}</h2>
 
-                <form class="clearfix mb-4" action="POST">
-                    <div class="form-group"> Create Box
-                        <label for="box-name"> </label>
-                        <input type="text" id="box-name" class="form-control" aria-describedby="box-name"
-                            placeholder="Enter Box Name">
+                        <form class="clearfix mb-4" action="POST">
+                            <div class="form-group"> Create Box
+                                <label for="box-name"> </label>
+                                <input type="text" id="box-name" class="form-control" aria-describedby="box-name"
+                                    placeholder="Enter Box Name">
+                            </div>
+
+                            <button id="submit-box" class="btn btn-warning float-right">Submit</button>
+                        </form>
+
+                        <h3>Boxes belonging to this collection:</h3>
+                        <ul id="example-list" class="list-group">
+                            {{#each results.box}}
+                            <li class="bg-dark" data-id="{{this._id}}" class="list-group-item">
+                                <a href="{{this._id}}">{{this.name}}</a>
+                                <div>{{this._id}}</div>
+                                <div>{{this.contens}}</div>
+
+                                <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
+                                    data-target="#editModal">Edit</button>
+                                <button class="btn btn-danger float-right delete">ｘ</button>
+                            </li>
+                            {{/each}}
+                        </ul>
                     </div>
-                   
-                    <button id="submit-box" class="btn btn-warning float-right">Submit</button>
-                </form>
-
-                <h3>Boxes belonging to this collection:</h3>
-                <ul id="example-list" class="list-group">
-                    {{#each results.box}}
-                    <li data-id="{{this._id}}" class="list-group-item">
-                        <a href="{{this._id}}">{{this.name}}</a>
-                        <div>{{this._id}}</div>
-                        <button class="btn btn-warning float-right edit">Edit</button>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
-                    </li>
-                    {{/each}}
-                </ul>
+                </div>
             </div>
         </div>
     </div>
-  </div>
-</div>
-
-                
 
 
- 
+
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -62,36 +65,70 @@
     </div>
 
     <!-- New Box Modal -->
-<div class="modal fade coolFont" id="newBoxModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create a Box</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+    <div class="modal fade coolFont" id="newBoxModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create a Box</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                <form class="clearfix mb-4" action="POST">
-                    <div class="form-group">
-                        <label for="update-name">Box Name</label>
-                        <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
-                            placeholder="Enter Example Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Box Contents</label>
-                        <textarea class="form-control" id="boxContent" rows="3"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button class="btn btn-lg btn-danger" id="mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="update-name">Box Name</label>
+                            <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
+                                placeholder="Enter Example Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Box Contents</label>
+                            <textarea class="form-control" id="boxContent" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-lg btn-danger" id="mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Box</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Update Box Form -->
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="update-name">Box Name</label>
+                            <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
+                                placeholder="Enter Example Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Box Contents</label>
+                            <textarea class="form-control" id="boxContent" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id = "save-changes" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

@@ -20,3 +20,6 @@ body{
 .coolFont3{
   font-family: 'Monoton', cursive;
 }
+.redColor{
+  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+}
