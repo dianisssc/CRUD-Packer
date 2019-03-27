@@ -67,12 +67,11 @@ module.exports = function (app) {
             .then(() => {
               if (password) {
 
-                res.render("collection", {
-                  results
-                });
+                res.json(results._id);
 
               } else {
-                console.log('password not correct!');
+                res.status(300);
+                res.send('Password not correct!');
               }
             })
 

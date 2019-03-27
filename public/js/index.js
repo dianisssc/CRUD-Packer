@@ -150,10 +150,10 @@ var manageFormSubmit = (event) => {
     alert("Please enter the name of the collection you would like to manage.")
   }
   else {
-    API.checkPass(obj).then(function () {
-
+    API.checkPass(obj).then(function (id) {
+      window.location.href = (`/collection/${id}`);
     })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 }
 
