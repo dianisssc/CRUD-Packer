@@ -1,5 +1,3 @@
-
-    
 const db = require("../models");
 const path = require("path");
 
@@ -23,30 +21,7 @@ module.exports = function (app) {
         res.render("collection", {
           results
         });
-      })
-  });
-
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-
-    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
-      console.log('test', boxes)
-      res.render("example", {
-        example: boxes
       });
-    });
-
-  });
-
-
-  app.get("/collection", function(req, res) {
-    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
-      console.log('test', boxes)
-      res.render("collection", {
-        collection: boxes
-      });
-    });
-   
   });
 
   // Render 404 page for any unmatched routes

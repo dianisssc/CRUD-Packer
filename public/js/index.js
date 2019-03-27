@@ -52,14 +52,14 @@ var API = {
       type: "DELETE"
     });
   },
-  checkPass: function (password) {
+  checkPass: function (obj) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: 'POST',
-      url: "api/checkPass",
-      data: JSON.stringify(password)
+      url: "api/checkPass/",
+      data: JSON.stringify(obj)
     })
   }
 };
@@ -78,16 +78,16 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var newColl = {
-    name: $('#example-name').val().trim(),
-    password: $('#example-password').val().trim(),
+    name: $('#newColl-name').val().trim(),
+    password: $('#newColl-password').val().trim(),
   };
 
-  API.saveBoxColl(newColl).then(function () {
-    refreshExamples();
-  });
+  API.saveBoxColl(newColl);
 
-  $('#example-name').val("");
-  $('#example-password').val("");
+  window.location.href = (`/collection/${newColl.name}`);
+
+  $('#newColl-name').val("");
+  $('#newColl-password').val("");
 };
 
 var handleBoxSubmit = function (event) {
@@ -136,7 +136,10 @@ var manageFormSubmit = (event) => {
   event.preventDefault();
 
   let collName = $('#collection-name').val().trim();
-  let collPass = $('#collection-password')
+  let collPass = $('#collection-password').val().trim();
+
+  $('#collection-name').val('');
+  $('#collection-password').val('');
 
   let obj = {
     collName,
@@ -147,20 +150,12 @@ var manageFormSubmit = (event) => {
     alert("Please enter the name of the collection you would like to manage.")
   }
   else {
-    API.checkPass(obj).then(function () {
-
+    API.checkPass(obj).then(function (id) {
+      window.location.href = (`/collection/${id}`);
     })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
   }
 }
-
-var createFormSubmit = (event) => {
-  event.preventDefault();
-
-  window.location.href = ("/collection");
-
-}
-
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
@@ -168,8 +163,6 @@ $updateBtn.on("click", handleUpdate);
 $('#submit-box').on('click', handleBoxSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
-$createFormSubmitBtn.on("click", createFormSubmit);
-
 
 //need submit buttons to update db in manage collection page 
 //need to be able to display box collection by name entered in modal 
