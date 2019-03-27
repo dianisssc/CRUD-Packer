@@ -1,3 +1,22 @@
 .list-group-item {
   line-height: 2.5;
 }
+body{
+  background-image:url("../images/ikea.jpeg");
+}
+#headerTron{
+  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+}
+
+#boxCard{
+  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+}
+.coolFont{
+  font-family: 'Black Ops One', cursive;
+}
+.coolFont2{
+  font-family: 'Press Start 2P', cursive;
+}
+.coolFont3{
+  font-family: 'Monoton', cursive;
+}
