@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 let SALT_WORK_FACTOR = 10
 
 var BoxCollectionSchema = new Schema({
-
     name: {
         type: String,
         required: true,
@@ -15,10 +14,12 @@ var BoxCollectionSchema = new Schema({
         type: String,
         required: true
     },
-    box: {
-        type: Schema.Types.ObjectId,
-        ref: "Boxes"
-    },
+    box: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Boxes"
+        }
+    ],
 
 });
 

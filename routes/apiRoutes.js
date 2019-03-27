@@ -1,7 +1,7 @@
 const db = require("../models");
+const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
- 
 
   // Create a new collection
   app.post("/api/create/", function (req, res) {
@@ -11,7 +11,22 @@ module.exports = function (app) {
         res.json(dbBox);
       })
       .catch(function (err) {
-        // If an error occurs, send the error to the client
+        res.json(err);
+      });
+
+  });
+
+  app.post("/createBox/:id", function (req, res) {
+
+    db.Box.create(req.body)
+      .then(function (dbBox) {
+        console.log('dbBox', dbBox);
+        return db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $push: { box: dbBox._id } }, { new: true });
+      })
+      .then(function (dbBox) {
+        res.json(dbBox);
+      })
+      .catch(function (err) {
         res.json(err);
       });
 
@@ -19,7 +34,6 @@ module.exports = function (app) {
 
   //Update Collection 
   app.post("/api/update/:id", function (req, res) {
-
 
     db.BoxCollection.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name } })
       .then((box) => {
@@ -30,11 +44,21 @@ module.exports = function (app) {
         console.log(err)
       })
   });
+  
+  // decrypt and check password
+
+  app.post("api/checkPass", function (req, res) {
+
+    console.log(req.body);
+
+    res.json(req.body);
+
+  });
 
 
   // Delete an example by id
   app.delete("/api/examples/:id", function (req, res) {
-    db.BoxCollection.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
+    db.BoxCollection.findByIdAndRemove(req.params.id).then(function (dbExample) {
       res.json(dbExample);
     });
   });
