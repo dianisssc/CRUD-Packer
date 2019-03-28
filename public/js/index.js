@@ -177,11 +177,32 @@ var handleUpdate = function (event) {
 
 var updateBox = (event) => {
   event.preventDefault();
-  let contents = $('#boxContent').val().trim();
 
-  $('#boxContent').val('')
+  let id = $('#edit-btn').attr('data-id');
+  let name = $('#update-name').val().trim();
 
-  // put in object
+  let contentArr = [];
+
+  let contents = $("#text-input-div :input");
+  console.log('contents', contents);
+
+  for (let i = 0; i < contents.length; i++) {
+    contentArr.push(contents[i].value);
+
+  }
+
+  $('#text-input-div').empty();
+
+  let input = $('<input></input>');
+  $(input).attr('id', 'boxContent');
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+
+  $('#boxContent').val('');
+  $('#update-name').val('');
+  $('#update-UID').val('');
 
   let obj = {
 
@@ -194,26 +215,14 @@ var updateBox = (event) => {
   API.updateBox(obj).then(function () {
     refreshExamples();
   });
-
 }
+
+
 var manageFormSubmit = (event) => {
   event.preventDefault();
 
   let collName = $('#collection-name').val().trim();
   let collPass = $('#collection-password').val().trim();
-
-  $('#text-input-div').empty();
-
-  let input = $('<input></input>');
-  $(input).attr('id', 'boxContent');
-  $(input).addClass('form-control');
-  $(input).addClass('content-stuff');
-
-  $('#text-input-div').append(input);
-
-  $('#collection-name').val('');
-  $('#collection-password').val('');
-  $('#boxContent').val('');
 
   let obj = {
     collName,
