@@ -6,7 +6,9 @@
                     <div class="container">
                         <h2>This is your Collection Page!</h2>
                         <h2>{{results.name}}</h2>
-
+                        <button type="button" class="btn btn-warning mt-2 mb-3" data-toggle="modal" data-target="#searchModal">
+                            Search {{results.name}} for a Box
+                        </button>
                         <form class="clearfix mb-4" action="POST">
                             <div class="form-group"> Create Box
                                 <label for="box-name"> </label>
@@ -14,7 +16,8 @@
                                     placeholder="Enter Box Name">
                             </div>
 
-                            <button id="submit-box" class="btn btn-warning float-right">Submit</button>
+                            <button id="submit-box" class="btn btn-warning float-left">Submit</button>
+                             <button type="button" id="delete-coll" class="btn btn-primary">Delete Coll</button>
                         </form>
 
                         <h3>Boxes belonging to this collection:</h3>
@@ -27,7 +30,7 @@
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal">Edit</button>
-                                <button type="button" class="btn btn-danger float-right delete" id ="box-delete">ｘ</button>
+                                <button type="button" class="btn btn-danger float-right delete" id="box-delete">ｘ</button>
                             </li>
                             {{/each}}
                         </ul>
@@ -59,21 +62,21 @@
 
                     <form class="clearfix mb-4" action="POST">
                         <div class="form-group">
-                            <label for="update-name">Box Name</label>
-                            <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
+                            <label for="new-name">Box Name</label>
+                            <input type="text" id="new-name" class="form-control" aria-describedby="new-name"
                                 placeholder="Enter Example Name">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Box Contents</label>
                             <textarea class="form-control" id="boxContent" rows="3"></textarea>
                         </div>
-                      
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-lg btn-danger" id="mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+                    <button class="btn btn-lg btn-danger" id="submit-box"><span class="fa fa-credit-card"></span>Submit</button>
                 </div>
             </div>
         </div>
@@ -97,11 +100,7 @@
                             <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
                                 placeholder="Enter Example Name">
                         </div>
-                           <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Unique ID</label>
-                            <input type="text" id="update-UID" class="form-control" aria-describedby="update-UID"
-                                placeholder="Enter a 4 digit ID for your box">
-                        </div>
+                       
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Box Contents</label>
                             <textarea class="form-control" id="boxContent" rows="3"></textarea>
@@ -110,8 +109,41 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id = "save-changes" class="btn btn-primary">Save changes</button>
+                    <button type="button" id="save-changes" class="btn btn-primary">Save changes</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="newColl-ID">Search By ID</label>
+                            <textarea class="form-control" id="unique-id" aria-describedby="example-password"
+                                placeholder="Enter Your Unique Box ID"></textarea>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-danger" id="quick-search"><span class="fa fa-credit-card"></span>Search
+                        By ID</button>
+                    <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span class="fa fa-credit-card"></span>Search
+                        By Barcode</button>
+                </div>
+
             </div>
         </div>
     </div>
