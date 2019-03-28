@@ -49,13 +49,28 @@ module.exports = function (app) {
   //Update Box 
   app.post("/api/updateBox/:id", function (req, res) {
 
-    db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.params.name, contents: req.body.contents, uniqueId: req.body.uniqueId } })
-      .then((box) => {
-        res.json(box);
+    let { name, contents, uniqueId } = req.body;
+
+    db.Box.findOne({ _id: req.params.id }).then(function (box) {
+      if (name === '') {
+        name = box.name;
+        console.log('trggered')
+      }
+      if (uniqueId === '') {
+        uniqueId = box.uniqueId;
+      }
+    })
+      .then(() => {
+        db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name: name, contents: contents, uniqueId: uniqueId } })
+          .then((box) => {
+            res.json(box);
+          })
+          .catch((err) => {
+            console.log(err)
+          });
       })
-      .catch((err) => {
-        console.log(err)
-      });
+
+
 
   });
 
