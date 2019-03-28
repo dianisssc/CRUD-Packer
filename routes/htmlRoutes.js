@@ -16,7 +16,7 @@ module.exports = function (app) {
 
   app.get("/collection/:id", function (req, res) {
     db.BoxCollection.findOne({ _id: req.params.id })
-      .populate('box', ['name', '_id', 'boxBelongsTo', 'contents']).then((results) => {
+      .populate('box', ['name', '_id', 'boxBelongsTo', 'contents', 'uniqueID']).then((results) => {
         res.render("collection", {
           results
         });

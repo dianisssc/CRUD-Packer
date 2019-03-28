@@ -67,19 +67,16 @@ module.exports = function (app) {
   //Update Box 
   app.post("/api/updateBox/:id", function (req, res) {
 
-    let { name, contents, uniqueId } = req.body;
+    let { name, contentArr } = req.body;
 
     db.Box.findOne({ _id: req.params.id }).then(function (box) {
       if (name === '') {
         name = box.name;
         console.log('trggered')
       }
-      if (uniqueId === '') {
-        uniqueId = box.uniqueId;
-      }
     })
       .then(() => {
-        db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name: name, contents: contents, uniqueId: uniqueId } })
+        db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name, contents: contentArr } })
           .then((box) => {
             res.json(box);
           })
@@ -87,9 +84,6 @@ module.exports = function (app) {
             console.log(err)
           });
       })
-
-
-
   });
 
   // decrypt and check password
@@ -121,10 +115,8 @@ module.exports = function (app) {
                 res.send('Password not correct!');
               }
             })
-
         }
       });
-
   });
 
 
@@ -137,6 +129,7 @@ module.exports = function (app) {
     });
 
   });
+
 
   // Delete box by id
   app.delete("/api/deleteBox/:id", function (req, res) {

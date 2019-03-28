@@ -94,13 +94,16 @@ var refreshExamples = function () {
   });
 
 };
-var quickSearch = function () {
+/*var quickSearch = function () {
   let boxID = $("#unique-id").val().trim();
   API.getBox(boxID).then(function (data) {
     console.log(data);
+    let div = $('<div>');
+    $(div).val(data);
+    $("#box-results").append(data)
   });
 
-};
+};*/
 
 var handleFormSubmit = function (event) {
   event.preventDefault();
@@ -199,8 +202,18 @@ var manageFormSubmit = (event) => {
   let collName = $('#collection-name').val().trim();
   let collPass = $('#collection-password').val().trim();
 
+  $('#text-input-div').empty();
+
+  let input = $('<input></input>');
+  $(input).attr('id', 'boxContent');
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+
   $('#collection-name').val('');
   $('#collection-password').val('');
+  $('#boxContent').val('');
 
   let obj = {
     collName,
@@ -226,7 +239,21 @@ var handleCollDeleteBtnClick = function (event) {
   API.deleteBoxColl(idToDelete).then(function () {
     refreshExamples();
   });
+
 };
+
+var addContent = function (event) {
+  event.preventDefault();
+
+  let input = $('<input></input>');
+
+  $(input).attr('id', 'boxContent');
+
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+}
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
@@ -235,6 +262,7 @@ $('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 $('#save-changes').on("click", updateBox);
 $('#quick-search').on("click", quickSearch);
-//need submit buttons to update db in manage collection page 
+$('#add-input').on('click', addContent)
+//need submit buttons to update db in manage collection page
 //need to be able to display box collection by name entered in modal 
 //currently, the submit button checks if there is text in the name field, we need to have it check that the name is indeed a collection and check the password
