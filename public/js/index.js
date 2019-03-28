@@ -39,7 +39,7 @@ var API = {
       data: JSON.stringify(BoxColl)
     })
   },
-  updateBox: function (Update, BoxColl) {
+  updateBox: function (Update) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -94,13 +94,16 @@ var refreshExamples = function () {
   });
 
 };
-var quickSearch = function () {
+/*var quickSearch = function () {
   let boxID = $("#unique-id").val().trim();
   API.getBox(boxID).then(function (data) {
     console.log(data);
+    let div = $('<div>');
+    $(div).val(data);
+    $("#box-results").append(data)
   });
 
-};
+};*/
 
 var handleFormSubmit = function (event) {
   event.preventDefault();
@@ -146,14 +149,15 @@ var handleBoxSubmit = function (event) {
 var handleDeleteBtnClick = function () {
 
   var idToDelete = $(this)
-    .parent()
     .attr("data-id");
-
   console.log(idToDelete)
+
+  console.log(this)
 
   API.deleteBox(idToDelete).then(function () {
     refreshExamples();
   });
+  location.reload();
 };
 
 var handleUpdate = function (event) {
@@ -200,12 +204,11 @@ var updateBox = (event) => {
   $('#update-name').val('');
   $('#update-UID').val('');
 
-
   let obj = {
 
     name,
-    contentArr,
-    id
+    contents,
+    //uniqueID
 
   }
 

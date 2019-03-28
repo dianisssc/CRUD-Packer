@@ -19,6 +19,24 @@ module.exports = function (app) {
   // create new box
 
   app.post("/createBox/:id", function (req, res) {
+    let uID = Math.floor(Math.random() * 99999) + 10000
+
+    /*function generateID() {
+      let uID = Math.floor(Math.random() * 99999) + 10000
+
+      db.Box.find({ uniqueID: uID }).then(function (box) {
+
+        console.log(box);
+
+        if (box.uniqueID === uID) {
+          generateID();
+          console.log('RECURSE');
+        } else {
+          console.log('RETURNED')
+          return uID;
+        }
+      });
+    }*/
 
     db.Box.create(req.body)
       .then(function (dbBox) {
@@ -136,4 +154,7 @@ module.exports = function (app) {
         res.json(err);
       });
   });
+
 };
+
+
