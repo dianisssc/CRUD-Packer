@@ -39,7 +39,7 @@ var API = {
       data: JSON.stringify(BoxColl)
     })
   },
-  updateBox: function (Update) {
+  updateBox: function (Update, BoxColl) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -55,9 +55,16 @@ var API = {
       type: "GET"
     });
   },
+  getBox: function (Box) {
+    return $.ajax({
+      url: "/boxes" ,
+      type: "GET",
+      data: JSON.stringify(Box)
+    });
+  },
   deleteBoxColl: function (id) {
     return $.ajax({
-      url: "/api/examples/" + id,
+      url: "/api/deleteCollection/" + id,
       type: "DELETE"
     });
   },
@@ -87,7 +94,13 @@ var refreshExamples = function () {
   });
 
 };
+var quickSearch = function () {
+  let boxID = $("#unique-id").val().trim();
+  API.getBox(boxID).then(function (data) {
+    console.log(data);
+  });
 
+};
 
 var handleFormSubmit = function (event) {
   event.preventDefault();
@@ -109,17 +122,24 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-
+  let uID = Math.floor(Math.random() * 9999) + 1000  
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
+    uniqueID: uID
   };
-
+  if($('#new-name').val()===" "){
+    alert("Please enter a box name");
+  }
+  else{
+  console.log(uID);
+  alert("Your Box " +newBox.name +"'s Unique ID is: " +uID);
   API.saveNewBox(newBox).then(function () {
     refreshExamples();
   });
 
   $('#box-name').val("");
+}
 };
 
 
@@ -209,6 +229,15 @@ var manageFormSubmit = (event) => {
   }
 }
 
+var handleCollDeleteBtnClick = function (event) {
+  event.preventDefault();
+  var idToDelete = dbExample;
+  console.log(idToDelete)
+
+  API.deleteBoxColl(idToDelete).then(function () {
+    refreshExamples();
+  });
+};
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
@@ -216,7 +245,7 @@ $('#submit-box').on('click', handleBoxSubmit);
 $('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 $('#save-changes').on("click", updateBox);
-
+$('#quick-search').on("click", quickSearch);
 //need submit buttons to update db in manage collection page 
 //need to be able to display box collection by name entered in modal 
 //currently, the submit button checks if there is text in the name field, we need to have it check that the name is indeed a collection and check the password

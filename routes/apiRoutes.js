@@ -113,7 +113,7 @@ module.exports = function (app) {
 
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
+  app.delete("/api/deleteCollection/:id", function (req, res) {
     db.BoxCollection.findByIdAndRemove(req.params.id).then(function (dbExample) {
       res.json(dbExample);
     });
@@ -131,3 +131,18 @@ module.exports = function (app) {
   });
 
 };
+
+
+// Route for getting all boxes from the db
+app.get("/boxes", function(req, res) {
+  // Grab every document in the boxes collection
+  db.Box.find(req.params.uniqueId)
+    .then(function(dbExample) {
+      // If we were able to successfully find boxes, send them back to the client
+      res.json(dbExample);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
