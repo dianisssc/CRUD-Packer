@@ -46,7 +46,7 @@ var API = {
       },
       type: "POST",
       url: `/api/updateBox/${Update.id}`,
-      data: JSON.stringify(BoxColl)
+      data: JSON.stringify(Update)
     })
   },
   getBoxColl: function () {
@@ -173,17 +173,29 @@ var handleUpdate = function (event) {
 
 var updateBox = (event) => {
   event.preventDefault();
-  let contents = $('#boxContent').val().trim(); 
-  
-  $('#boxContent').val('')
 
-  // put in object
+  let id = $('#edit-btn').attr('data-id');
+
+  let contents = $('#boxContent').val().trim();
+  let name = $('#update-name').val().trim();
+  let uniqueID = $('#update-UID').val().trim();
+
+  if (contents === '') {
+    
+  }
+
+  $('#boxContent').val('');
+  $('#update-name').val('');
+  $('#update-UID').val('');
+
+  let contentArr = contents.split(',');
 
   let obj = {
 
     name,
-    contents,
-    //uniqueID
+    contentArr,
+    uniqueID,
+    id
 
   }
 

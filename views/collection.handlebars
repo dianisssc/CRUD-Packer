@@ -23,14 +23,14 @@
                         <h3>Boxes belonging to this collection:</h3>
                         <ul id="example-list" class="list-group">
                             {{#each results.box}}
-                            <li class="bg-dark border border-white" data-id="{{this._id}}" class="list-group-item">
-                                <a href="{{this._id}}">{{this.name}}</a>
+                            <li class="bg-dark border border-white" id='info-stuff' class="list-group-item">
+                                <div>{{this.name}}</div>
                                 <div>{{this._id}}</div>
-                                <div>{{this.contens}}</div>
+                                <div>{{this.contents}}</div>
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
-                                    data-target="#editModal">Edit</button>
-                                <button type="button" class="btn btn-danger float-right delete" id="box-delete">ｘ</button>
+                                    data-target="#editModal" data-id="{{this._id}}">Edit</button>
+                                <button type="button" class="btn btn-danger float-right delete" id ="box-delete">ｘ</button>
                             </li>
                             {{/each}}
                         </ul>
@@ -69,7 +69,7 @@
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Box Contents</label>
-                            <textarea class="form-control" id="boxContent" rows="3"></textarea>
+                            <textarea class="form-control" id="new-box-content" rows="3"></textarea>
                         </div>
 
                     </form>
