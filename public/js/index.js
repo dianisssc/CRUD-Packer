@@ -57,7 +57,7 @@ var API = {
   },
   getBox: function (Box) {
     return $.ajax({
-      url: "/boxes" ,
+      url: "/boxes",
       type: "GET",
       data: JSON.stringify(Box)
     });
@@ -122,24 +122,24 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-  let uID = Math.floor(Math.random() * 9999) + 1000  
+  let uID = Math.floor(Math.random() * 9999) + 1000
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
     uniqueID: uID
   };
-  if($('#new-name').val()===" "){
+  if ($('#new-name').val() === " ") {
     alert("Please enter a box name");
   }
-  else{
-  console.log(uID);
-  alert("Your Box " +newBox.name +"'s Unique ID is: " +uID);
-  API.saveNewBox(newBox).then(function () {
-    refreshExamples();
-  });
+  else {
+    console.log(uID);
+    alert("Your Box " + newBox.name + "'s Unique ID is: " + uID);
+    API.saveNewBox(newBox).then(function () {
+      refreshExamples();
+    });
 
-  $('#box-name').val("");
-}
+    $('#box-name').val("");
+  }
 };
 
 
@@ -178,10 +178,9 @@ var updateBox = (event) => {
 
   let contents = $('#boxContent').val().trim();
   let name = $('#update-name').val().trim();
-  let uniqueID = $('#update-UID').val().trim();
 
   if (contents === '') {
-    
+
   }
 
   $('#boxContent').val('');
@@ -194,7 +193,6 @@ var updateBox = (event) => {
 
     name,
     contentArr,
-    uniqueID,
     id
 
   }
@@ -210,8 +208,18 @@ var manageFormSubmit = (event) => {
   let collName = $('#collection-name').val().trim();
   let collPass = $('#collection-password').val().trim();
 
+  $('#text-input-div').empty();
+
+  let input = $('<input></input>');
+  $(input).attr('id', 'boxContent');
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+
   $('#collection-name').val('');
   $('#collection-password').val('');
+  $('#boxContent').val('');
 
   let obj = {
     collName,
@@ -237,7 +245,21 @@ var handleCollDeleteBtnClick = function (event) {
   API.deleteBoxColl(idToDelete).then(function () {
     refreshExamples();
   });
+
 };
+
+var addContent = function (event) {
+  event.preventDefault();
+
+  let input = $('<input></input>');
+
+  $(input).attr('id', 'boxContent');
+
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+}
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on("click", handleUpdate);
@@ -246,6 +268,7 @@ $('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 $('#save-changes').on("click", updateBox);
 $('#quick-search').on("click", quickSearch);
-//need submit buttons to update db in manage collection page 
+$('#add-input').on('click', addContent)
+//need submit buttons to update db in manage collection page
 //need to be able to display box collection by name entered in modal 
 //currently, the submit button checks if there is text in the name field, we need to have it check that the name is indeed a collection and check the password

@@ -49,19 +49,16 @@ module.exports = function (app) {
   //Update Box 
   app.post("/api/updateBox/:id", function (req, res) {
 
-    let { name, contents, uniqueId } = req.body;
+    let { name, contentArr } = req.body;
 
     db.Box.findOne({ _id: req.params.id }).then(function (box) {
       if (name === '') {
         name = box.name;
         console.log('trggered')
       }
-      if (uniqueId === '') {
-        uniqueId = box.uniqueId;
-      }
     })
       .then(() => {
-        db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name: name, contents: contents, uniqueId: uniqueId } })
+        db.Box.findOneAndUpdate({ _id: req.params.id }, { $set: { name, contents: contentArr } })
           .then((box) => {
             res.json(box);
           })
@@ -69,9 +66,6 @@ module.exports = function (app) {
             console.log(err)
           });
       })
-
-
-
   });
 
   // decrypt and check password
@@ -103,10 +97,8 @@ module.exports = function (app) {
                 res.send('Password not correct!');
               }
             })
-
         }
       });
-
   });
 
 
@@ -120,6 +112,7 @@ module.exports = function (app) {
 
   });
 
+
   // Delete box by id
   app.delete("/api/deleteBox/:id", function (req, res) {
 
@@ -130,19 +123,18 @@ module.exports = function (app) {
     });
   });
 
+
+  // Route for getting all boxes from the db
+  app.get("/boxes", function (req, res) {
+    // Grab every document in the boxes collection
+    db.Box.find(req.params.uniqueId)
+      .then(function (dbExample) {
+        // If we were able to successfully find boxes, send them back to the client
+        res.json(dbExample);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
 };
-
-
-// Route for getting all boxes from the db
-app.get("/boxes", function(req, res) {
-  // Grab every document in the boxes collection
-  db.Box.find(req.params.uniqueId)
-    .then(function(dbExample) {
-      // If we were able to successfully find boxes, send them back to the client
-      res.json(dbExample);
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
-});
