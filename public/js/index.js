@@ -39,7 +39,7 @@ var API = {
       data: JSON.stringify(BoxColl)
     })
   },
-  updateBox: function (Update, BoxColl) {
+  updateBox: function (Update) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -57,7 +57,7 @@ var API = {
   },
   getBox: function (Box) {
     return $.ajax({
-      url: "/boxes" ,
+      url: "/boxes",
       type: "GET",
       data: JSON.stringify(Box)
     });
@@ -122,24 +122,26 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-  let uID = Math.floor(Math.random() * 9999) + 1000  
+
+
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
-    uniqueID: uID
+
   };
-  if($('#new-name').val()===" "){
+  if ($('#new-name').val() === "") {
     alert("Please enter a box name");
   }
-  else{
-  console.log(uID);
-  alert("Your Box " +newBox.name +"'s Unique ID is: " +uID);
-  API.saveNewBox(newBox).then(function () {
-    refreshExamples();
-  });
+  else {
+    let uID = Math.floor(Math.random() * 99999) + 10000
 
-  $('#box-name').val("");
-}
+    API.saveNewBox(newBox).then(function () {
+      refreshExamples();
+      alert("Your Box " + newBox.name + "'s Unique ID is: " + uID);
+    });
+
+    $('#box-name').val("");
+  }
 };
 
 
@@ -173,29 +175,17 @@ var handleUpdate = function (event) {
 
 var updateBox = (event) => {
   event.preventDefault();
-
-  let id = $('#edit-btn').attr('data-id');
-
   let contents = $('#boxContent').val().trim();
-  let name = $('#update-name').val().trim();
-  let uniqueID = $('#update-UID').val().trim();
 
-  if (contents === '') {
-    
-  }
+  $('#boxContent').val('')
 
-  $('#boxContent').val('');
-  $('#update-name').val('');
-  $('#update-UID').val('');
-
-  let contentArr = contents.split(',');
+  // put in object
 
   let obj = {
 
     name,
-    contentArr,
-    uniqueID,
-    id
+    contents,
+    //uniqueID
 
   }
 

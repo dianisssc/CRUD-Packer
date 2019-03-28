@@ -19,6 +19,24 @@ module.exports = function (app) {
   // create new box
 
   app.post("/createBox/:id", function (req, res) {
+    //let uID = Math.floor(Math.random() * 99999) + 10000
+
+    /*function generateID() {
+      let uID = Math.floor(Math.random() * 99999) + 10000
+
+      db.Box.find({ uniqueID: uID }).then(function (box) {
+
+        console.log(box);
+
+        if (box.uniqueID === uID) {
+          generateID();
+          console.log('RECURSE');
+        } else {
+          console.log('RETURNED')
+          return uID;
+        }
+      });
+    }*/
 
     db.Box.create(req.body)
       .then(function (dbBox) {
@@ -130,19 +148,21 @@ module.exports = function (app) {
     });
   });
 
+
+  // Route for getting all boxes from the db
+  app.get("/boxes", function (req, res) {
+    // Grab every document in the boxes collection
+    db.Box.find(req.params.uniqueId)
+      .then(function (dbExample) {
+        // If we were able to successfully find boxes, send them back to the client
+        res.json(dbExample);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
 };
 
 
-// Route for getting all boxes from the db
-app.get("/boxes", function(req, res) {
-  // Grab every document in the boxes collection
-  db.Box.find(req.params.uniqueId)
-    .then(function(dbExample) {
-      // If we were able to successfully find boxes, send them back to the client
-      res.json(dbExample);
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
-});
