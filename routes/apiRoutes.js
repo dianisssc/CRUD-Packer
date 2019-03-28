@@ -8,7 +8,7 @@ module.exports = function (app) {
 
     db.BoxCollection.create(req.body)
       .then(function (dbBox) {
-        res.json(dbBox);
+        res.send(dbBox);
       })
       .catch(function (err) {
         res.json(err);
@@ -68,6 +68,8 @@ module.exports = function (app) {
   app.post("/api/updateBox/:id", function (req, res) {
 
     let { name, contentArr } = req.body;
+
+    console.log('contents', contentArr);
 
     db.Box.findOne({ _id: req.params.id }).then(function (box) {
       if (name === '') {

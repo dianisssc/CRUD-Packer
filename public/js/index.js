@@ -108,14 +108,17 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
+  console.log('Works!')
+
   var newColl = {
     name: $('#newColl-name').val().trim(),
     password: $('#newColl-password').val().trim(),
   };
 
-  API.saveBoxColl(newColl);
+  API.saveBoxColl(newColl).then((test) => {
+    window.location.href = (`/collection/${test._id}`);
+  });
 
-  window.location.href = (`/collection/${newColl.name}`);
 
   $('#newColl-name').val("");
   $('#newColl-password').val("");
@@ -125,11 +128,12 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-  let uID = Math.floor(Math.random() * 9999) + 1000
+  let uID = Math.floor(Math.random() * 99999) + 10000
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
-    uniqueID: uID
+    uniqueID: uID,
+    contents: [],
   };
   if ($('#new-name').val() === " ") {
     alert("Please enter a box name");
@@ -178,18 +182,18 @@ var handleUpdate = function (event) {
 var updateBox = (event) => {
   event.preventDefault();
 
-  let id = $('#edit-btn').attr('data-id');
   let name = $('#update-name').val().trim();
+  let id = $('#edit-btn').attr('data-id');
 
   let contentArr = [];
 
   let contents = $("#text-input-div :input");
-  console.log('contents', contents);
 
   for (let i = 0; i < contents.length; i++) {
     contentArr.push(contents[i].value);
-
   }
+
+  console.log(contentArr);
 
   $('#text-input-div').empty();
 
@@ -207,16 +211,16 @@ var updateBox = (event) => {
   let obj = {
 
     name,
-    contents,
-    //uniqueID
+    contentArr,
+    id
 
   }
 
-  API.updateBox(obj).then(function () {
-    refreshExamples();
+  API.updateBox(obj).then(function (params) {
+    window.location.reload();
   });
 
-  window.location.reload();
+
 }
 
 
@@ -274,7 +278,7 @@ $('#submit-box').on('click', handleBoxSubmit);
 $('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 $('#save-changes').on("click", updateBox);
-$('#quick-search').on("click", quickSearch);
+//$('#quick-search').on("click", quickSearch);
 $('#add-input').on('click', addContent)
 //need submit buttons to update db in manage collection page
 //need to be able to display box collection by name entered in modal 
