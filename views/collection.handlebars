@@ -27,12 +27,17 @@
                             <li class="bg-dark border border-white" id='info-stuff' class="list-group-item">
                                 <div>{{this.name}}</div>
                                 <div>{{this.uniqueID}}</div>
-                                <div>{{this.contents}}</div>
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal" data-id="{{this._id}}">Edit</button>
                                 <button type="button" class="btn btn-danger float-right delete"
                                     id="box-delete">ｘ</button>
+
+                                {{#each contents}}
+                                <ul>
+                                    {{this}}
+                                </ul>
+                                {{/each}}
                             </li>
                             {{/each}}
                         </ul>

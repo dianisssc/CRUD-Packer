@@ -54,7 +54,6 @@ module.exports = function (app) {
     db.Box.findOne({ _id: req.params.id }).then(function (box) {
       if (name === '') {
         name = box.name;
-        console.log('trggered')
       }
     })
       .then(() => {
