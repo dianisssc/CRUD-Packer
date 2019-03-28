@@ -202,15 +202,6 @@ var manageFormSubmit = (event) => {
   let collName = $('#collection-name').val().trim();
   let collPass = $('#collection-password').val().trim();
 
-  $('#text-input-div').empty();
-
-  let input = $('<input></input>');
-  $(input).attr('id', 'boxContent');
-  $(input).addClass('form-control');
-  $(input).addClass('content-stuff');
-
-  $('#text-input-div').append(input);
-
   $('#collection-name').val('');
   $('#collection-password').val('');
   $('#boxContent').val('');
@@ -261,7 +252,7 @@ $('#submit-box').on('click', handleBoxSubmit);
 $('#box-delete').on("click", handleDeleteBtnClick);
 $mngFormSubmitBtn.on("click", manageFormSubmit)
 $('#save-changes').on("click", updateBox);
-$('#quick-search').on("click", quickSearch);
+//$('#quick-search').on("click", quickSearch);
 $('#add-input').on('click', addContent)
 //need submit buttons to update db in manage collection page
 //need to be able to display box collection by name entered in modal 
