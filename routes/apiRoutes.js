@@ -19,7 +19,7 @@ module.exports = function (app) {
   // create new box
 
   app.post("/createBox/:id", function (req, res) {
-    //let uID = Math.floor(Math.random() * 99999) + 10000
+    let uID = Math.floor(Math.random() * 99999) + 10000
 
     /*function generateID() {
       let uID = Math.floor(Math.random() * 99999) + 10000

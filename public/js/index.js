@@ -122,22 +122,20 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-
-
+  let uID = Math.floor(Math.random() * 9999) + 1000
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
-
+    uniqueID: uID
   };
-  if ($('#new-name').val() === "") {
+  if ($('#new-name').val() === " ") {
     alert("Please enter a box name");
   }
   else {
-    let uID = Math.floor(Math.random() * 99999) + 10000
-
+    console.log(uID);
+    alert("Your Box " + newBox.name + "'s Unique ID is: " + uID);
     API.saveNewBox(newBox).then(function () {
       refreshExamples();
-      alert("Your Box " + newBox.name + "'s Unique ID is: " + uID);
     });
 
     $('#box-name').val("");
@@ -148,14 +146,15 @@ var handleBoxSubmit = function (event) {
 var handleDeleteBtnClick = function () {
 
   var idToDelete = $(this)
-    .parent()
     .attr("data-id");
-
   console.log(idToDelete)
+
+  console.log(this)
 
   API.deleteBox(idToDelete).then(function () {
     refreshExamples();
   });
+  location.reload();
 };
 
 var handleUpdate = function (event) {
