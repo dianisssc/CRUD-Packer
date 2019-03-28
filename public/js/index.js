@@ -212,6 +212,8 @@ var updateBox = (event) => {
   API.updateBox(obj).then(function () {
     refreshExamples();
   });
+
+  window.location.reload();
 }
 
 
@@ -245,6 +247,8 @@ var handleCollDeleteBtnClick = function (event) {
   API.deleteBoxColl(idToDelete).then(function () {
     refreshExamples();
   });
+
+  window.location.reload();
 
 };
 
