@@ -2,14 +2,15 @@
   line-height: 2.5;
 }
 .img{
+  background-color: rgba(0, 0, 0, .1);
   background-image:url("../images/ikea.jpeg");
 }
 #headerTron{
-  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+  background-image: linear-gradient(maroon, rgb(25, 8, 8));
 }
 
 #boxCard{
-  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+  background-image: linear-gradient(maroon, rgb(25, 8, 8));
 }
 .coolFont{
   font-family: 'Black Ops One', cursive;
@@ -21,5 +22,5 @@
   font-family: 'Monoton', cursive;
 }
 .redColor{
-  background-image: linear-gradient(#c70000, rgb(25, 8, 8));
+  background-image: linear-gradient(maroon, rgb(25, 8, 8));
 }

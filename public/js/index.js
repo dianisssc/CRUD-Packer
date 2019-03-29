@@ -108,14 +108,17 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
+  console.log('Works!')
+
   var newColl = {
     name: $('#newColl-name').val().trim(),
     password: $('#newColl-password').val().trim(),
   };
 
-  API.saveBoxColl(newColl);
+  API.saveBoxColl(newColl).then((test) => {
+    window.location.href = (`/collection/${test._id}`);
+  });
 
-  window.location.href = (`/collection/${newColl.name}`);
 
   $('#newColl-name').val("");
   $('#newColl-password').val("");
@@ -125,11 +128,12 @@ var handleBoxSubmit = function (event) {
   event.preventDefault();
 
   console.log(window.location.pathname.split('/')[2]);
-  let uID = Math.floor(Math.random() * 9999) + 1000
+  let uID = Math.floor(Math.random() * 99999) + 10000
   var newBox = {
     name: $('#box-name').val().trim(),
     boxBelongsTo: window.location.pathname.split('/')[2],
-    uniqueID: uID
+    uniqueID: uID,
+    contents: [],
   };
   if ($('#new-name').val() === " ") {
     alert("Please enter a box name");
@@ -177,34 +181,54 @@ var handleUpdate = function (event) {
 
 var updateBox = (event) => {
   event.preventDefault();
-  let contents = $('#boxContent').val().trim();
 
-  $('#boxContent').val('')
+  let name = $('#update-name').val().trim();
+  let id = $('#edit-btn').attr('data-id');
 
-  // put in object
+  let contentArr = [];
+
+  let contents = $("#text-input-div :input");
+
+  for (let i = 0; i < contents.length; i++) {
+    contentArr.push(contents[i].value);
+  }
+
+  console.log(contentArr);
+
+  $('#text-input-div').empty();
+
+  let input = $('<input></input>');
+  $(input).attr('id', 'boxContent');
+  $(input).addClass('form-control');
+  $(input).addClass('content-stuff');
+
+  $('#text-input-div').append(input);
+
+  $('#boxContent').val('');
+  $('#update-name').val('');
+  $('#update-UID').val('');
 
   let obj = {
 
     name,
-    contents,
-    //uniqueID
+    contentArr,
+    id
 
   }
 
-  API.updateBox(obj).then(function () {
-    refreshExamples();
+  API.updateBox(obj).then(function (params) {
+    window.location.reload();
   });
 
+
 }
+
+
 var manageFormSubmit = (event) => {
   event.preventDefault();
 
   let collName = $('#collection-name').val().trim();
   let collPass = $('#collection-password').val().trim();
-
-  $('#collection-name').val('');
-  $('#collection-password').val('');
-  $('#boxContent').val('');
 
   let obj = {
     collName,
@@ -230,6 +254,8 @@ var handleCollDeleteBtnClick = function (event) {
   API.deleteBoxColl(idToDelete).then(function () {
     refreshExamples();
   });
+
+  window.location.reload();
 
 };
 

@@ -8,7 +8,7 @@ module.exports = function (app) {
 
     db.BoxCollection.create(req.body)
       .then(function (dbBox) {
-        res.json(dbBox);
+        res.send(dbBox);
       })
       .catch(function (err) {
         res.json(err);
@@ -70,10 +70,11 @@ module.exports = function (app) {
 
     let { name, contentArr } = req.body;
 
+    console.log('contents', contentArr);
+
     db.Box.findOne({ _id: req.params.id }).then(function (box) {
       if (name === '') {
         name = box.name;
-        console.log('trggered')
       }
     })
       .then(() => {
