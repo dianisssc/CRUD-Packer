@@ -8,6 +8,15 @@ var BoxSchema = new Schema({
         type: String,
         required: true,
     },
+    boxBelongsTo: {
+        type: String,
+    },
+    contents: {
+        type: Object,
+    },
+    uniqueID: {
+        type: Number,
+    }
 
 });
 

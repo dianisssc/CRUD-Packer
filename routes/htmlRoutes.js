@@ -1,4 +1,5 @@
 const db = require("../models");
+const path = require("path");
 
 module.exports = function (app) {
   // Load index page
@@ -13,17 +14,15 @@ module.exports = function (app) {
 
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-
-    db.BoxCollection.findOne({ _id: req.params.id }, function (err, boxes) {
-      console.log('test', boxes)
-      res.render("example", {
-        example: boxes
+  app.get("/collection/:id", function (req, res) {
+    db.BoxCollection.findOne({ _id: req.params.id })
+      .populate('box', ['name', '_id', 'boxBelongsTo', 'contents', 'uniqueID']).then((results) => {
+        res.render("collection", {
+          results
+        });
       });
-    });
-
   });
+
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

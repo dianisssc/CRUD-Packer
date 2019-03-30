@@ -2,78 +2,123 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-name">Name</label>
-            <input type="text" id="example-name" class="form-control" aria-describedby="example-name"
-              placeholder="Enter Example Name">
-          </div>
-          <div class="form-group">
-            <label for="example-password">Password</label>
-            <textarea class="form-control" id="example-password" aria-describedby="example-password"
-              placeholder="Enter Example Password"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="update-name">Update Name</label>
-            <input type="text" id="update-name" class="form-control" aria-describedby="update-name"
-              placeholder="Enter Example Name">
-          </div>
-          <div class="form-group">
-            <label for="update-id">id</label>
-            <textarea class="form-control" id="update-id" aria-describedby="update-id"
-              placeholder="Enter Update ID"></textarea>
-          </div>
-          <button id="submit-update" class="btn btn-primary float-right">Submit</button>
-        </form>
-
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each boxColl}}
-          <li data-id="{{this._id}}" class="list-group-item">
-            <a href="example/{{this._id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
+        <div class="jumbotron " id="headerTron">
+          <h1 class="display-4 text-white text-center coolFont">CRUD - PACKER</h1>
+          <p class="lead text-white text-center coolFont">Manage your CRUD</p>
+          <hr class="my-4">
+          </hr>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="card coolFont" style="width: 18rem;" id="boxCard">
+
+          <div class="card-body">
+            <h5 class="card-title text-white">Create Box Collection</h5>
+
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#createModal">
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-4">
+        <div class="card coolFont" style="width: 18rem;" id="boxCard">
+          <div class="card-body">
+            <h5 class="card-title text-white">Manage Collection</h5>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#manageModal">
+              Manage
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Modal -->
+    <div class="modal fade coolFont" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Collection</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form class="clearfix mb-4" action="POST">
+              <div class="form-group">
+                <label for="example-name">Name</label>
+                <input type="text" id="newColl-name" class="form-control" aria-describedby="example-name" placeholder="Enter Example Name">
+              </div>
+              <div class="form-group">
+                <label for="newColl-password">Set Password</label>
+                <textarea class="form-control" id="newColl-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
+              </div>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-lg btn-danger" id="submit"><span class="fa fa-credit-card"></span>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Modal -->
+    <div class="modal fade coolFont" id="manageModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Manage Collection</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form class="clearfix mb-4" action="POST">
+              <div class="form-group">
+                <label for="collection-name">Collection Name</label>
+                <input type="text" id="collection-name" class="form-control" aria-describedby="collection-name"
+                  placeholder="Enter Example Name">
+              </div>
+              <div class="form-group">
+                <label for="example-password">Password</label>
+                <textarea class="form-control" id="collection-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-lg btn-danger" id="mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </div>
-  
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
 <script src="/js/index.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="JsBarcode.all.min.js"></script>
