@@ -1,3 +1,16 @@
+<!--script>
+
+    window.onload = function () {
+        var pass = localStorage.getItem('passwordEntered');
+
+        console.log('password entered', pass);
+
+        if (!pass || pass === null) {
+            window.stop();
+        }
+    };
+</script-->
+
 <div id="home">
     <div class="container">
         <div class="row">
@@ -7,11 +20,11 @@
                         <a href="http://localhost:3000"><button class='btn btn-primary'>Home</button></a>
                         <h2>This is your Collection Page!</h2>
                         <h2>{{results.name}}</h2>
-                     
+
                         <button type="button" class="btn btn-warning mt-2 mb-3" data-toggle="modal"
                             data-target="#searchModal">
                             Search {{results.name}} for a Box
-                        </button> 
+                        </button>
                         <form class="clearfix mb-4" action="POST">
                             <div class="form-group"> Create Box
                                 <label for="box-name"> </label>
@@ -20,7 +33,7 @@
                             </div>
 
                             <button id="submit-box" class="btn btn-warning float-left">Submit</button>
-                          
+
                             <!--  <button type="button" id="delete-coll" class="btn btn-primary">Delete Coll</button>
                         -->
                         </form>
@@ -34,7 +47,8 @@
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal" data-id="{{this._id}}">Edit</button>
-                                <button type="button" class="btn btn-danger float-right delete" id ="box-delete" data-id="{{this._id}}">ｘ</button>
+                                <button type="button" class="btn btn-danger float-right delete" id="box-delete"
+                                    data-id="{{this._id}}">ｘ</button>
                                 {{#each this.contents}}
                                 <ul>
                                     {{this}}
@@ -124,7 +138,7 @@
         </div>
     </div>
 
-    
+
 
 </div>
 
