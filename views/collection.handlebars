@@ -35,7 +35,7 @@
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal" data-id="{{this._id}}">Edit</button>
                                 <button type="button" class="btn btn-danger float-right delete" id ="box-delete" data-id="{{this._id}}">ｘ</button>
-                                {{#each contents}}
+                                {{#each this.contents}}
                                 <ul>
                                     {{this}}
                                 </ul>
@@ -124,42 +124,7 @@
         </div>
     </div>
 
-    <!-- Search Modal -->
-    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="clearfix mb-4" action="POST">
-                        <div class="form-group">
-                            <label for="newColl-ID">Search By ID</label>
-                            <textarea class="form-control" id="unique-id" aria-describedby="example-password"
-                                placeholder="Enter Your Unique Box ID"></textarea>
-                        </div>
-
-                    </form>
-                    <div id="box-results-name"></div>
-                    <ul id="contents-list">
-                   </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-lg btn-danger" id="quick-search"><span
-                            class="fa fa-credit-card"></span>Search
-                        By ID</button>
-                    <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span
-                            class="fa fa-credit-card"></span>Search
-                        By Barcode</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    
 
 </div>
 
