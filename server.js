@@ -25,7 +25,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 //Connect to mongo db 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).
+mongoose.connect('mongodb://ADrySoldier:ADrySoldier8531@ds337985.mlab.com:37985/heroku_sbv95rrq', { useNewUrlParser: true }).
 then(() => console.log('MongodB Connected'))
   .catch(err => console.log(err));
 
