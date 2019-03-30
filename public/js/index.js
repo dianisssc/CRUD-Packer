@@ -236,7 +236,7 @@ var updateBox = (event) => {
   }
 
   API.updateBox(obj).then(function (params) {
-    window.location.reload();
+    location.reload();
   });
 
 

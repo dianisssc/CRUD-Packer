@@ -27,18 +27,18 @@
       </div>
 
       <div class="col-4">
-        <!--
+        
        <div class="card coolFont" style="width: 18rem;" id ="boxCard">
 
          <div class="card-body">
            <h5 class="card-title text-white">Quick Search</h5>
 
-           <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#quick-search-box">
-             Search
-           </button>
+             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#searchModal">
+              Quick Search
+            </button>
          </div>
        </div>
-       -->
+       
       </div>
 
       <div class="col-4">
@@ -127,40 +127,43 @@
         </div>
       </div>
 
-      <!-- Search Modal -->
-
-      <div class="modal fade" id="quick-search-box" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form class="clearfix mb-4" action="POST">
-                <div class="form-group">
-                  <label for="newColl-ID">Search By ID</label>
-                  <textarea type="hidden" class="form-control" id="newColl-password" aria-describedby="example-password"
-                    placeholder="Enter Your Unique Box ID"></textarea>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="newColl-ID">Search By ID</label>
+                            <textarea class="form-control" id="unique-id" aria-describedby="example-password"
+                                placeholder="Enter Your Unique Box ID"></textarea>
+                        </div>
 
-              </form>
-
+                    </form>
+                    <div id="box-results-name"></div>
+                    <ul id="contents-list">
+                   </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-danger" id="quick-search"><span
+                            class="fa fa-credit-card"></span>Search
+                        By ID</button>
+                    <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span
+                            class="fa fa-credit-card"></span>Search
+                        By Barcode</button>
+                </div>
+                
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-lg btn-danger" id="boxID-form-submit"><span class="fa fa-credit-card"></span>Search
-                By ID</button>
-              <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span
-                  class="fa fa-credit-card"></span>Search
-                By Barcode</button>
-            </div>
-
-          </div>
         </div>
-      </div>
+    </div>
+    </div>
 
 
 
