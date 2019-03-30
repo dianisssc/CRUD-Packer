@@ -96,16 +96,35 @@ var refreshExamples = function () {
   });
 
 };
-/*var quickSearch = function () {
+var quickSearch = function () {
   let boxID = $("#unique-id").val().trim();
+  
   API.getBox(boxID).then(function (data) {
-    console.log(data);
-    let div = $('<div>');
-    $(div).val(data);
-    $("#box-results").append(data)
+    //console.log(data.uniqueID);
+   for (let i = 0; i < data.length; i++) {
+     dataID = data[i].uniqueID;
+     let boxContent = data[i].contents; 
+      if(dataID == boxID){
+        console.log(data[i].name);
+        console.log(data[i].contents);
+        $("#box-results-name").append(data[i].name)
+        for (let j = 0; j < boxContent.length; j++) {
+          var target = $("#contents-list");
+          var li = target.append("<li></li>")
+          li.append(boxContent[j]);
+        }
+         
+          
+          
+    
+       
+       
+      }
+    }
+   // $("#box-results").append(data)
   });
 
-};*/
+};
 
 var handleFormSubmit = function (event) {
   event.preventDefault();
@@ -283,8 +302,15 @@ $(document).on('click', '#box-delete', function () {
 $submitBtn.on("click", handleFormSubmit);
 $updateBtn.on('click', handleUpdate);
 $('#submit-box').on('click', handleBoxSubmit);
+<<<<<<< HEAD
 $mngFormSubmitBtn.on("click", manageFormSubmit);
 //$('#quick-search').on("click", quickSearch);
+=======
+$('#box-delete').on("click", handleDeleteBtnClick);
+$mngFormSubmitBtn.on("click", manageFormSubmit)
+$('#save-changes').on("click", updateBox);
+$('#quick-search').on("click", quickSearch);
+>>>>>>> 1dba8768d4e0f44245e01a62546b00401ab4b7fc
 $('#add-input').on('click', addContent)
 
 //need submit buttons to update db in manage collection page
