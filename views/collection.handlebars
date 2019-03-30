@@ -7,11 +7,11 @@
                         <a href="http://localhost:3000"><button class='btn btn-primary'>Home</button></a>
                         <h2>This is your Collection Page!</h2>
                         <h2>{{results.name}}</h2>
-                        <!--
+                     
                         <button type="button" class="btn btn-warning mt-2 mb-3" data-toggle="modal"
                             data-target="#searchModal">
                             Search {{results.name}} for a Box
-                        </button> -->
+                        </button> 
                         <form class="clearfix mb-4" action="POST">
                             <div class="form-group"> Create Box
                                 <label for="box-name"> </label>
@@ -20,7 +20,9 @@
                             </div>
 
                             <button id="submit-box" class="btn btn-warning float-left">Submit</button>
-                            <!--button type="button" id="delete-coll" class="btn btn-primary">Delete Coll</button-->
+                          
+                            <!--  <button type="button" id="delete-coll" class="btn btn-primary">Delete Coll</button>
+                        -->
                         </form>
 
                         <h3>Boxes belonging to this collection:</h3>
@@ -148,7 +150,9 @@
                         </div>
 
                     </form>
-                    <div id="box-results"></div>
+                    <div id="box-results-name"></div>
+                    <ul id="contents-list">
+                   </ul>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-lg btn-danger" id="quick-search"><span
