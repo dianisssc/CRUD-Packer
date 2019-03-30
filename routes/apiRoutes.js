@@ -121,17 +121,12 @@ module.exports = function (app) {
       });
   });
 
-
-
-
   // Delete an example by id
   app.delete("/api/deleteCollection/:id", function (req, res) {
     db.BoxCollection.findByIdAndRemove(req.params.id).then(function (dbExample) {
       res.json(dbExample);
     });
-
   });
-
 
   // Delete box by id
   app.delete("/api/deleteBox/:id", function (req, res) {
@@ -142,7 +137,6 @@ module.exports = function (app) {
       res.json(dbExample);
     });
   });
-
 
   // Route for getting all boxes from the db
   app.get("/boxes", function (req, res) {
