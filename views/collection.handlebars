@@ -1,17 +1,32 @@
 <div id="home">
     <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light rounded text-white coolFont" id = "boxCard">
+                            <a class="navbar-brand text-white" href="#">CRUD-Packer</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-white"  href="http://localhost:3000">Home <span class="sr-only">(current)</span></a>
+                                      
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </nav>
+
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="jumbotron jumbotron-fluid text-white coolFont rounded" id="headerTron">
+                <div class="jumbotron jumbotron-fluid text-white coolFont rounded mt-3" id="headerTron">
                     <div class="container">
-                        <a href="http://localhost:3000"><button class='btn btn-primary'>Home</button></a>
                         <h2>This is your Collection Page!</h2>
                         <h2>{{results.name}}</h2>
-                     
-                        <button type="button" class="btn btn-warning mt-2 mb-3" data-toggle="modal"
-                            data-target="#searchModal">
+
+                        <button type="button" class="btn btn-warning mt-2 mb-3" data-toggle="modal" data-target="#searchModal">
                             Search {{results.name}} for a Box
-                        </button> 
+                        </button>
                         <form class="clearfix mb-4" action="POST">
                             <div class="form-group"> Create Box
                                 <label for="box-name"> </label>
@@ -20,7 +35,7 @@
                             </div>
 
                             <button id="submit-box" class="btn btn-warning float-left">Submit</button>
-                          
+
                             <!--  <button type="button" id="delete-coll" class="btn btn-primary">Delete Coll</button>
                         -->
                         </form>
@@ -34,7 +49,7 @@
 
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal" data-id="{{this._id}}">Edit</button>
-                                <button type="button" class="btn btn-danger float-right delete" id ="box-delete" data-id="{{this._id}}">ｘ</button>
+                                <button type="button" class="btn btn-danger float-right delete" id="box-delete" data-id="{{this._id}}">ｘ</button>
                                 {{#each this.contents}}
                                 <ul>
                                     {{this}}
@@ -85,16 +100,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-lg btn-danger" id="submit-box"><span
-                            class="fa fa-credit-card"></span>Submit</button>
+                    <button class="btn btn-lg btn-danger" id="submit-box"><span class="fa fa-credit-card"></span>Submit</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -130,7 +143,40 @@
         </div>
     </div>
 
-    
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="newColl-ID">Search By ID</label>
+                            <textarea class="form-control" id="unique-id" aria-describedby="example-password"
+                                placeholder="Enter Your Unique Box ID"></textarea>
+                        </div>
+
+                    </form>
+                    <div id="box-results-name"></div>
+                    <ul id="contents-list">
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-danger" id="quick-search"><span class="fa fa-credit-card"></span>Search
+                        By ID</button>
+                    <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span class="fa fa-credit-card"></span>Search
+                        By Barcode</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 

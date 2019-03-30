@@ -27,18 +27,9 @@
       </div>
 
       <div class="col-4">
-        
-       <div class="card coolFont" style="width: 18rem;" id ="boxCard">
 
-         <div class="card-body">
-           <h5 class="card-title text-white">Quick Search</h5>
-
-             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#searchModal">
-              Quick Search
-            </button>
-         </div>
-       </div>
        
+
       </div>
 
       <div class="col-4">
@@ -72,13 +63,11 @@
             <form class="clearfix mb-4" action="POST">
               <div class="form-group">
                 <label for="example-name">Name</label>
-                <input type="text" id="newColl-name" class="form-control" aria-describedby="example-name"
-                  placeholder="Enter Example Name">
+                <input type="text" id="newColl-name" class="form-control" aria-describedby="example-name" placeholder="Enter Example Name">
               </div>
               <div class="form-group">
                 <label for="newColl-password">Set Password</label>
-                <textarea class="form-control" id="newColl-password" aria-describedby="example-password"
-                  placeholder="Enter Example Password"></textarea>
+                <textarea class="form-control" id="newColl-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
               </div>
 
             </form>
@@ -113,61 +102,49 @@
               </div>
               <div class="form-group">
                 <label for="example-password">Password</label>
-                <textarea class="form-control" id="collection-password" aria-describedby="example-password"
-                  placeholder="Enter Example Password"></textarea>
+                <textarea class="form-control" id="collection-password" aria-describedby="example-password" placeholder="Enter Example Password"></textarea>
               </div>
 
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-lg btn-danger" id="mng-form-submit"><span
-                class="fa fa-credit-card"></span>Submit</button>
+            <button class="btn btn-lg btn-danger" id="mng-form-submit"><span class="fa fa-credit-card"></span>Submit</button>
           </div>
         </div>
       </div>
 
-     <!-- Search Modal -->
-    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Find Your Stuff</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="clearfix mb-4" action="POST">
-                        <div class="form-group">
-                            <label for="newColl-ID">Search By ID</label>
-                            <textarea class="form-control" id="unique-id" aria-describedby="example-password"
-                                placeholder="Enter Your Unique Box ID"></textarea>
-                        </div>
-
-                    </form>
-                    <div id="box-results-name"></div>
-                    <ul id="contents-list">
-                   </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-lg btn-danger" id="quick-search"><span
-                            class="fa fa-credit-card"></span>Search
-                        By ID</button>
-                    <button class="btn btn-lg btn-danger" id="barcode-form-submit"><span
-                            class="fa fa-credit-card"></span>Search
-                        By Barcode</button>
-                </div>
-                
-            </div>
-        </div>
+      <!-- Search Modal -->
+     <div class="modal" tabindex="-1" role="dialog" id ="searchModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
     </div>
+  </div>
+</div>
 
 
 
-      <script src="/js/index.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="JsBarcode.all.min.js"></script>
+
+<script src="/js/index.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="JsBarcode.all.min.js"></script>
