@@ -1,3 +1,16 @@
+<!--script>
+
+    window.onload = function () {
+        var pass = localStorage.getItem('passwordEntered');
+
+        console.log('password entered', pass);
+
+        if (!pass || pass === null) {
+            window.stop();
+        }
+    };
+</script-->
+
 <div id="home">
     <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light rounded text-white coolFont" id = "boxCard">
@@ -50,6 +63,7 @@
                                 <button type="button" class="btn btn-warning" id="edit-btn" data-toggle="modal"
                                     data-target="#editModal" data-id="{{this._id}}">Edit</button>
                                 <button type="button" class="btn btn-danger float-right delete" id="box-delete" data-id="{{this._id}}">ｘ</button>
+
                                 {{#each this.contents}}
                                 <ul>
                                     {{this}}
@@ -171,6 +185,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 

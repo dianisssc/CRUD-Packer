@@ -254,8 +254,9 @@ var manageFormSubmit = (event) => {
   else {
     API.checkPass(obj).then(function (id) {
       window.location.href = (`/collection/${id}`);
+      localStorage.setItem('passwordEntered', true);
     })
-      .catch(err => alert(err));
+      .catch(err => alert(err.responseText));
   }
 }
 
